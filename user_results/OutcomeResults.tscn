@@ -1,0 +1,112 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://user_results/OutcomeResults.gd" type="Script" id=1]
+[ext_resource path="res://black_background.jpg" type="Texture" id=2]
+
+[node name="OutcomeResults" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+line_color = Color( 0.862745, 0.533333, 0.533333, 1 )
+bg_color = Color( 0.45098, 0.45098, 0.45098, 1 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 312.0
+margin_top = 37.5
+margin_right = 712.0
+margin_bottom = 557.5
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+margin_left = 35.0
+margin_top = 60.0
+margin_right = 365.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
+margin_right = 330.0
+margin_bottom = 14.0
+text = "User Outcome Results"
+align = 1
+
+[node name="OptionButton" type="OptionButton" parent="NinePatchRect/VBoxContainer"]
+margin_top = 18.0
+margin_right = 330.0
+margin_bottom = 38.0
+rect_clip_content = true
+text = "Average response time"
+clip_text = true
+items = [ "Average response time", null, false, 0, null, "Average successful response percent", null, false, 1, null, "Average settling time", null, false, 2, null, "Average successful settling percent", null, false, 3, null, "Initial response accuracy", null, false, 4, null, "Average settling accuracy", null, false, 5, null, "Smoothness", null, false, 6, null, "Average X Speed - Straight Paths", null, false, 7, null, "Average X Speed - Curved Path", null, false, 8, null, "Average Y Speed - Straight Path", null, false, 9, null, "Average Y Speed - Curved Path", null, false, 10, null, "Average Combined Speed - Straight Path", null, false, 11, null, "Average Combined Speed - Curved Path", null, false, 12, null, "Percent out of Bounds", null, false, 13, null, "Trial Time", null, false, 14, null ]
+selected = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 42.0
+margin_right = 330.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 56.0
+margin_right = 330.0
+margin_bottom = 408.0
+rect_min_size = Vector2( 0, 350 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+margin_right = 37.0
+margin_bottom = 352.0
+
+[node name="y_label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 37.0
+margin_bottom = 14.0
+text = "y-axis"
+align = 1
+
+[node name="y_ticks_container" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+margin_left = 41.0
+margin_right = 41.0
+margin_bottom = 352.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+margin_left = 45.0
+margin_right = 325.0
+margin_bottom = 352.0
+rect_min_size = Vector2( 275, 0 )
+
+[node name="LineContainer" type="Control" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 280.0
+margin_bottom = 330.0
+rect_min_size = Vector2( 280, 330 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/LineContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 280, 330 )
+color = Color( 0.517647, 0.517647, 0.517647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x_ticks_container" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 334.0
+margin_right = 280.0
+margin_bottom = 334.0
+
+[node name="x_label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 338.0
+margin_right = 280.0
+margin_bottom = 352.0
+text = "x-axis"
+align = 1
+
+[connection signal="item_selected" from="NinePatchRect/VBoxContainer/OptionButton" to="." method="_on_OptionButton_item_selected"]

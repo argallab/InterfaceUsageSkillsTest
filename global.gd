@@ -19,7 +19,6 @@ var q1_check = true
 var q2_check = true
 var q3_check = true
 var q4_check = true
-
 # Variables to display on the results page after command following is done
 var prompted_commands = 0
 var num_correct = 0
