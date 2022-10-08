@@ -78,6 +78,7 @@ func get_val(val, idx):
 	print("Val:", val)
 	if [TYPE_REAL].has(typeof(val)):
 		print("returned val")
+		val = int(val)
 		return val
 	print("returned index")
 	return idx
@@ -116,12 +117,12 @@ func draw_graph():
 	x_ticks = data.size()
 	y_ticks = data.size()
 	
-	$NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/LineContainer.add_child(line)
+	$HBoxContainer/VBoxContainer4/LineContainer.add_child(line)
 	
-	$NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/x_label.text = x_label
-	$NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/y_label.text = y_label
-	$NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/LineContainer/Background.color = bg_color
-	
+	$HBoxContainer/VBoxContainer4/x_label.text = x_label
+	$HBoxContainer2/y_label.text = y_label
+	$HBoxContainer/VBoxContainer4/LineContainer/Background.color = bg_color
+
 	# check if values are numerical
 	for val in data:
 		if not [TYPE_REAL].has(typeof(val['x'])):
@@ -152,7 +153,7 @@ func draw_graph():
 			x_tick.text = str(i * (max_x-min_x) / (x_ticks-1) + min_x) # optional rounding
 		else:
 			x_tick.text = str(data[i]['x'])
-		$NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/x_ticks_container.add_child(x_tick)
+		$HBoxContainer/VBoxContainer4/x_ticks_container.add_child(x_tick)
 
 	for i in range(y_ticks-1, -1, -1):
 		var y_tick = Label.new()
@@ -163,14 +164,14 @@ func draw_graph():
 		else:
 			y_tick.text = str(data[y_ticks-i-1]['y'])
 		print(y_tick.text)
-		$NinePatchRect/VBoxContainer/HBoxContainer/y_ticks_container.add_child(y_tick)
+		$HBoxContainer2/y_ticks_container.add_child(y_tick)
 	
 		# fix updated rect sizes not having correct values after altering labels
 	yield(get_tree(), "idle_frame") or yield(VisualServer, "frame_post_draw")
 	
 	# shape the line
-	line_rect_width = $NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/LineContainer.rect_size.x
-	line_rect_height = $NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/LineContainer.rect_size.y
+	line_rect_width = $HBoxContainer/VBoxContainer4/LineContainer.rect_size.x
+	line_rect_height = $HBoxContainer/VBoxContainer4/LineContainer.rect_size.y
 	
 	print("orig width: ", line_rect_width)
 	print("orig height: ", line_rect_height)
@@ -191,9 +192,9 @@ func draw_graph():
 
 func delete_graph():
 	# Clear all node children that need to be redrawn
-	delete_child($NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/LineContainer)
-	delete_child($NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/x_ticks_container)
-	delete_child($NinePatchRect/VBoxContainer/HBoxContainer/y_ticks_container)
+	delete_child($HBoxContainer/VBoxContainer4/LineContainer)
+	delete_child($HBoxContainer/VBoxContainer4/x_ticks_container)
+	delete_child($HBoxContainer2/y_ticks_container)
 	
 	# Empty the data
 	data = []
@@ -209,6 +210,6 @@ func delete_graph():
 		
 func delete_child(curr_node):
 	for n in curr_node.get_children():
-		if n != $NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/LineContainer/Background:
+		if n != $HBoxContainer/VBoxContainer4/LineContainer/Background:
 			curr_node.remove_child(n)
 			n.queue_free()
