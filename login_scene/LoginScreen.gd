@@ -16,6 +16,7 @@ func _ready():
 	# Initialize the path to database
 	db = SQLite.new()
 	db.path = db_name
+	db.open_db()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,24 +28,25 @@ func _ready():
 # Log them in if it exists
 # Give an error if it doesn't exist
 func _on_LoginButton_pressed():
-	var db_query = "select * from UserInfo where Username = '"
-	db_query += username
-	db_query += "' and Password = '"
-	db_query += password
-	db_query += "'"
-	db.query(db_query)
-	if db.query_result.size() > 0:
-		print("Login successful!")
+	var query_string : String = "SELECT * FROM TherapistInfo WHERE Username = ? AND Password = ?;"
+	var param_bindings : Array = [username, password]
+	var success = db.query_with_bindings(query_string, param_bindings)
+	if not success:
+		print("Query failure: " + db.error_message)
+		return
+	
+	if db.query_result:
+		print("Login successful")
+		get_tree().change_scene("res://menu/Menu.tscn")
 	else:
-		print("Login failed. Please try again.")
-	get_tree().change_scene("res://menu/Menu.tscn")
+		print("Login failed. Please try again!")
+
 
 # Adds given username and password to database if the user chooses to create a profile
 func _on_CreateUserButton_pressed():
-	db.open_db()
-	var tableName = "UserInfo"
-	var db_query = "insert into UserInfo (UserName, Password) values ('"
-	db_query += tableName # mahdieh changed from username
+	var tableName = "TherapistInfo"
+	var db_query = "insert into TherapistInfo (Username, Password) values ('"
+	db_query += username
 	db_query += "', '"
 	db_query += password
 	db_query += "')"
