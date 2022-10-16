@@ -23,14 +23,14 @@ func _on_CommandButton_pressed():
 func _on_TrajectoryButton_pressed():
 	get_tree().change_scene("res://trajectory_following/TrajectoryFollowing.tscn")
 
-
+func _on_CurvedTrajectoryButton_pressed(): 
+	get_tree().change_scene("res://trajectory_following/CurvedTrajectory.tscn")
+	
 func _on_UserInfo_pressed():
 	get_tree().change_scene("res://user_info/UserInfo.tscn")
 
-
 func _on_UserResults_pressed():
 	get_tree().change_scene("res://user_results/OutcomeResults.tscn")
-
 
 func _on_Questionnaires_pressed():
 	get_tree().change_scene("res://questionnaires/Questionnaires.tscn")
