@@ -102,6 +102,15 @@ var dlj_curve = 0.0
 # var input_type = "keyboard"
 var input_type = "controller"
 
+# For Date and Time
+var date_time 
+var day
+var month
+var year
+var hour
+var minute
+
+
 func _ready():
 	# Initial x and y positions and rotation of wheelchair
 	position.x = 550
@@ -365,12 +374,21 @@ func change_display_directions():
 			
 			# Average dlj's
 			Global.avg_stability = (dlj_1 + dlj_2 + dlj_3 + dlj_4) / 4
-			
+			# get Date and Time for upcoming SQL Query
+			date_time = OS.get_datetime()
+			print(date_time)
+			day = str(date_time['day'])
+			month = str(date_time ['month'])
+			year = str(date_time['year'])
+			hour = str(date_time['hour'])
+			minute = str(date_time['minute'])
+			date_time = month + "/" + day + "/" + year + "   " + hour + ":" + minute
+			print(date_time)
 			# SQL query
 			db.open_db()
-			var db_query = "insert into UserSignalsTrajectory (UserID, TrialID, nBB, tOB, PercentOB, avg_stability, avg_x_total, avg_y_total, avg_speed_total, avg_x_half1, avg_y_half1, avg_speed_half1, avg_x_half2, avg_y_half2, avg_speed_half2, avg_rot_total) values ('"
+			var db_query = "insert into UserSignalsTrajectory (UserID, nBB, tOB, PercentOB, avg_stability, avg_x_total, avg_y_total, avg_speed_total, avg_x_half1, avg_y_half1, avg_speed_half1, avg_x_half2, avg_y_half2, avg_speed_half2, avg_rot_total, Date) values ('"
 			db_query += Global.user_ID + "', '"
-			db_query += Global.trial_ID + "', '"
+			#db_query += Global.trial_ID + "', '"
 			db_query += str(nBB) + "', '"
 			db_query += str(float(time_outside / 1000)) + "', '"
 			db_query += str(Global.percent_oob) + "', '"
@@ -384,8 +402,12 @@ func change_display_directions():
 			db_query += str(Global.avg_x_speed) + "', '"
 			db_query += str(Global.avg_y_speed) + "', '"
 			db_query += str(Global.avg_speed) + "', '"
-			db_query += str(Global.avg_rot_speed) + "')"
-			db.query(db_query)
+			db_query += str(Global.avg_rot_speed) + "', '"
+			db_query += date_time + "')"
+			var success = db.query(db_query)
+			if not success:
+				print(db.error_message)
+				
 			
 			get_tree().change_scene("res://trajectory_following/TrajectoryFollowingResults.tscn")
 
