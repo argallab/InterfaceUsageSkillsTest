@@ -1,7 +1,8 @@
 extends Node
 
-var user_ID = "0000"
+var user_ID
 var trial_ID = "2"
+var username = ""
 
 # Variables to store inputs for command following menu
 # Current values are standard values

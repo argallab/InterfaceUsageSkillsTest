@@ -55,7 +55,7 @@ func _on_SubmitButton_pressed():
 
 func add_to_sql(age, injury, interface_use):
 	Global.user_ID = $NinePatchRect/VBoxContainer/HBoxContainer/UserIDText.text
-	var db_query = "insert into UserInfo (UserID, Age, Sex, Gender, Handedness, Interface, InterfaceUse, Injury) values ('"
+	var db_query = "insert into UserInfo (UserID, Age, Sex, Gender, Handedness, Interface, InterfaceUse, Injury, Username) values ('"
 	db_query += Global.user_ID + "', '"
 	db_query += age + "', '"
 	db_query += str(user_sex) + "', '"
@@ -63,7 +63,8 @@ func add_to_sql(age, injury, interface_use):
 	db_query += str(user_handedness) + "', '"
 	db_query += str(user_interface) + "', '"
 	db_query += interface_use + "', '"
-	db_query += injury + "')"
+	db_query += injury + "', '"
+	db_query += Global.username + "')"
 	db.query(db_query)
 
 

@@ -100,16 +100,16 @@ func draw_graph():
 	var line = Line2D.new()
 	line.width = line_width
 	line.default_color = line_color
-	
 	# Grab data from SQL
 	if curr_value <= 5:
 		category = command_vars[curr_value]	
-		db.query("SELECT " + category + " FROM UserSignalsCommand;")
+		db.query("SELECT " + category + " FROM UserSignalsCommand WHERE UserID = '" + Global.user_ID + "';")
 	else:
 		category = trajectory_vars[curr_value - 6]
-		db.query("SELECT " + category + " FROM UserSignalsTrajectory;")
+		db.query("SELECT " + category + " FROM UserSignalsTrajectory WHERE UserID = " + Global.user_ID + ";")
 	y_label = category
 	print(y_label)
+	print(db.query_result)
 	for i in db.query_result:
 		data.append({'x': str(counter), 'y': i[category]})
 		counter += 1

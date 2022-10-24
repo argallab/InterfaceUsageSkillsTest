@@ -212,9 +212,9 @@ func _process(delta):
 		Global.avg_settling_acc = float(sum_settling_acc / Global.num_correct)
 		
 		db.open_db()
-		var db_query = "insert into UserSignalsCommand (UserID, TrialID, tR, percentR, tS, percentS, init_rA, avg_sA) values ('"
+		var db_query = "insert into UserSignalsCommand (UserID, tR, percentR, tS, percentS, init_rA, avg_sA) values ('"
 		db_query += Global.user_ID + "', '"
-		db_query += Global.trial_ID + "', '"
+		#db_query += Global.trial_ID + "', '" shouldn't be necessary, autoincrements 
 		db_query += str(Global.avg_response_time) + "', '"
 		db_query += str(float(Global.num_correct) / float(Global.prompted_commands)) + "', '"
 		db_query += str(Global.avg_settling_time) + "', '"
