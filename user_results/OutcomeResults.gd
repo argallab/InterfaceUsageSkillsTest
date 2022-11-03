@@ -9,6 +9,7 @@ export var y_label = ""
 
 var x_ticks
 var y_ticks
+var plottable
 
 var x_numerical = true
 var y_numerical = true
@@ -117,6 +118,13 @@ func draw_graph():
 	x_ticks = data.size()
 	y_ticks = data.size()
 	
+	if x_ticks == 0:
+		plottable = "no"
+	if x_ticks == 1:
+		plottable = "point"
+	if x_ticks > 1: 
+		plottable = "line"
+	
 	$HBoxContainer/VBoxContainer4/LineContainer.add_child(line)
 	
 	$HBoxContainer/VBoxContainer4/x_label.text = x_label
@@ -149,22 +157,21 @@ func draw_graph():
 		var x_tick = Label.new()
 		x_tick.size_flags_horizontal = SIZE_EXPAND_FILL
 		x_tick.align = HALIGN_CENTER
-		if x_numerical:
-			x_tick.text = str(i * (max_x-min_x) / (x_ticks-1) + min_x) # optional rounding
-		else:
-			x_tick.text = str(data[i]['x'])
+		#if x_numerical:
+			#x_tick.text = str(i * (max_x-min_x) / (x_ticks-1) + min_x) # optional rounding
+		#else:
+		x_tick.text = str(truncate(data[i]['x'], 2))
 		$HBoxContainer/VBoxContainer4/x_ticks_container.add_child(x_tick)
-
 	for i in range(y_ticks-1, -1, -1):
-		var y_tick = Label.new()
-		y_tick.size_flags_vertical = SIZE_EXPAND_FILL
-		y_tick.valign = VALIGN_CENTER
-		if y_numerical:
-			y_tick.text = str(stepify(i * (max_y-min_y) / (y_ticks-1) + min_y, 0.001)) # optional rounding
-		else:
-			y_tick.text = str(data[y_ticks-i-1]['y'])
-		print(y_tick.text)
-		$HBoxContainer2/y_ticks_container.add_child(y_tick)
+			var y_tick = Label.new()
+			y_tick.size_flags_vertical = SIZE_EXPAND_FILL
+			y_tick.valign = VALIGN_CENTER
+			#if y_numerical:
+				#y_tick.text = str(stepify(i * (max_y-min_y) / (y_ticks-1) + min_y, 0.001)) # optional rounding
+			#else:
+			y_tick.text = str(truncate(data[y_ticks-i-1]['y'], 2))
+			print(y_tick.text)
+			$HBoxContainer2/y_ticks_container.add_child(y_tick)
 	
 		# fix updated rect sizes not having correct values after altering labels
 	yield(get_tree(), "idle_frame") or yield(VisualServer, "frame_post_draw")
@@ -176,19 +183,31 @@ func draw_graph():
 	print("orig width: ", line_rect_width)
 	print("orig height: ", line_rect_height)
 	
-	line_rect_x = (line_rect_width / x_ticks)
-	line_rect_y = (line_rect_height / y_ticks)
-	
-	line_rect_width = line_rect_x * (x_ticks-1)
-	line_rect_height = line_rect_y * (y_ticks-1)
-	
-	print("new width: ", line_rect_width)
-	print("new height: ", line_rect_height)
-	
+	if plottable != "no":
+		line_rect_x = (line_rect_width / x_ticks)
+		line_rect_y = (line_rect_height / y_ticks)
+		
+		line_rect_width = line_rect_x * (x_ticks-1)
+		line_rect_height = line_rect_y * (y_ticks-1)
+		
+		print("new width: ", line_rect_width)
+		print("new height: ", line_rect_height)
+		
 	for i in range(len(data)):
 		var scaled_x = scale_x(get_val(data[i]['x'], i))
 		var scaled_y = scale_y(get_val(data[i]['y'], i))
-		line.add_point(Vector2(scaled_x, scaled_y - 65))
+		#truncating: 
+		scaled_x = truncate(scaled_x, 2)
+		scaled_y = truncate(scaled_y, 2)
+		#plotting a "point" (a tight, small line that looks circular, for those more knowledgable who wish to optimize: see draw_primitive()
+		if plottable == "point":
+			for j in range(2):
+				line.add_point(Vector2(scaled_x+1,scaled_y-165))
+				line.add_point(Vector2(scaled_x,scaled_y-166))
+				line.add_point(Vector2(scaled_x-1,scaled_y-165))
+				line.add_point(Vector2(scaled_x,scaled_y-164))
+		else:
+			line.add_point(Vector2(scaled_x, scaled_y - 65))
 
 func delete_graph():
 	# Clear all node children that need to be redrawn
@@ -213,3 +232,14 @@ func delete_child(curr_node):
 		if n != $HBoxContainer/VBoxContainer4/LineContainer/Background:
 			curr_node.remove_child(n)
 			n.queue_free()
+func truncate(number, digits):
+		if len(str(number).rsplit('.')) > 1:
+			var nbDecimals = len(str(number).rsplit('.')[1])
+			if nbDecimals <= digits:
+				return number
+			var stepper = pow(10.0,digits)
+			number = floor(stepper*number)/stepper
+			return number
+		else:
+			return number
+	
