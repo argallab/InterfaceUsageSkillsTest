@@ -376,14 +376,12 @@ func change_display_directions():
 			Global.avg_stability = (dlj_1 + dlj_2 + dlj_3 + dlj_4) / 4
 			# get Date and Time for upcoming SQL Query
 			date_time = OS.get_datetime()
-			print(date_time)
 			day = str(date_time['day'])
 			month = str(date_time ['month'])
 			year = str(date_time['year'])
 			hour = str(date_time['hour'])
 			minute = str(date_time['minute'])
 			date_time = month + "/" + day + "/" + year + "   " + hour + ":" + minute
-			print(date_time)
 			# SQL query
 			db.open_db()
 			var db_query = "insert into UserSignalsTrajectory (UserID, nBB, tOB, PercentOB, avg_stability, avg_x_total, avg_y_total, avg_speed_total, avg_x_half1, avg_y_half1, avg_speed_half1, avg_x_half2, avg_y_half2, avg_speed_half2, avg_rot_total, Date) values ('"
@@ -429,12 +427,14 @@ func calc_accel(speed_dict):
 	var curr_accel = 0.0
 	for time in speed_dict:
 		if !first_time:
-			curr_accel = (speed_dict[time] - last_speed) / (float(time - last_time) / 1000)
+			curr_accel = ((speed_dict[time] - last_speed) / (float(time - last_time)))
 			accel[time] = curr_accel
 		last_time = time
 		last_speed = speed_dict[time]
 		first_time = false
-		
+	print("ACCEL:")
+	print(accel)
+	print("\n")
 	return accel
 	
 func calc_abs_sq_jerks(accel_dict):
@@ -445,7 +445,7 @@ func calc_abs_sq_jerks(accel_dict):
 	var curr_jerks = 0.0
 	for time in accel_dict:
 		if !first_time:
-			curr_jerks = (accel_dict[time] - last_accel) / (float(time - last_time) / 1000)
+			curr_jerks = ((accel_dict[time] - last_accel) / (float(time - last_time)))#/1000)
 			jerks[time] = pow(abs(curr_jerks), 2)
 		last_time = time
 		last_accel = accel_dict[time]
@@ -461,9 +461,11 @@ func calc_avg_stability(t_0, t_f, v_peak, jerks_dict):
 	var last_time = null
 	var last_jerks = null
 	var riemann_sum = 0.0
+	print("JERKS DICT")
+	print(jerks_dict)
 	for time in jerks_dict:
 		if !first_time:
-			riemann_sum += (jerks_dict[time] + last_jerks) / 2 * (float(time - last_time) / 1000)
+			riemann_sum += ((jerks_dict[time] + last_jerks) / 2 * (float(time - last_time)) / 1000)
 		last_time = time
 		last_jerks = jerks_dict[time]
 		first_time = false

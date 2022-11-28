@@ -25,7 +25,7 @@ var sum_t_r = 0
 
 var epsilon = 10 * PI / 180
 
-# var input_type = "keyboard"
+#var input_type = "keyboard"
 var input_type = "controller"
 var input_vector = Vector2.ZERO
 var input_theta = 0
@@ -128,8 +128,9 @@ func _process(delta):
 		# If the command direction is the same as the user's input direction
 		if user_dir == arrow_str and user_dir != "none":
 			# Increment the number of correct commands
+			print("arrived")
 			Global.num_correct += 1
-			
+			print(Global.num_correct)
 			# Calculate response time/tR (time b/t prompt and correct response)
 			var response_time = OS.get_ticks_msec()
 			# Add to the sum of total time it takes for user to respond correctly
@@ -177,6 +178,7 @@ func _process(delta):
 					sum_response_acc += 1 - abs(target_angle - input_theta)
 					# Increment the number of correct responses given
 					Global.num_correct += 1
+					print("here!")
 					# Change the first response flag b/c following responses are no
 					# longer the first response
 					first_response = false
@@ -206,6 +208,7 @@ func _process(delta):
 					
 	if Global.prompted_commands >= Global.commands.size() * Global.repetitions:
 		# write to SQL database here
+		print(Global.num_correct)
 		Global.avg_response_time = float(sum_t_r / Global.num_correct) / 1000.0
 		Global.avg_settling_time = float(sum_s_r / Global.num_correct) / 1000.0
 		Global.init_response_acc = float(sum_response_acc / Global.num_correct)
@@ -228,24 +231,25 @@ func _process(delta):
 # Function to generate the arrow directions, durations, and magnitudes for the entire run
 # Is called inside the ready() function
 func generate_commands():
-	for i in range(Global.commands.size()):
-		var next_command = randi() % Global.commands.size()
+	for i in range(Global.commands.size() * Global.repetitions):
+		var next_command = Global.commands[randi() % Global.commands.size()]
 		if commands_list.size() > 0:
 			while next_command == commands_list[-1]:
-				next_command = randi() % Global.commands.size()
+				next_command = Global.commands[randi() % Global.commands.size()]
 		commands_list.append(next_command)
 		durations_list.append(randi() % (Global.max_time - Global.min_time) + Global.min_time)
 		if Global.magnitude:
 			magnitude_list.append(rng.randf_range(0.0, 0.5))
-	
 
 # Gets the direction (and magnitude) of the current command arrow from the commands list
 # and displays the appropriate arrow for that command
 func target_arrow():
+	print(commands_list)
+	print(Global.commands)
 	first_response = true
 	settled = false
-	var arrow_index = commands_list[command_index]
-	arrow_str = Global.commands[arrow_index]
+	# var arrow_index = commands_list[command_index]
+	arrow_str = commands_list[command_index]
 	if arrow_str == "left":
 		curr_target = get_node("../Arrows/ArrowLeft")
 		target_angle = 3 * PI / 2
