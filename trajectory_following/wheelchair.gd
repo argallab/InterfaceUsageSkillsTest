@@ -168,7 +168,6 @@ func _process(delta):
 		v_speed_4[OS.get_ticks_msec()] = curr_speed
 	elif turn4 and !curve4:
 		v_speed_curve[OS.get_ticks_msec()] = curr_speed
-	
 	change_display_directions()
 	
 func change_display_directions():
@@ -326,28 +325,7 @@ func change_display_directions():
 				avg_rot_speeds["turn4"] = Vector2(avg_rot_speed, interval_start-interval_end)
 				print("Turn 4 speed: " + str(avg_rot_speed))
 				turn4 = true
-			$direction_arrow.hide()
-			$Camera2D/direction_label.set_text("Follow path")
-			on_curved_path = true
-			get_node('../curve_collision_area').show()
-			get_node('../path_area').hide()
-			get_node('../path_color').hide()
-			get_node('../collision_area').hide()
-			get_node('../Label1').hide()
-			get_node('../Label2').hide()
-			get_node('../Label3').hide()
-			get_node('../Label4').hide()
-			get_node('../Label5').hide()
-			get_node('../Label6').hide()
-			get_node('../Label7').hide()
-			get_node('../Label8').hide()
-			get_node('../Sprite').hide()
-#			get_node('../path/turn2').hide()
-#			get_node('../path/turn3').hide()
-#			get_node('../path/turn4').hide()
 			
-		if abs(position.x - 2200) < pos_tol and abs(position.y-550) < pos_tol:
-			$Camera2D/direction_label.set_text("Done")
 			time_now = OS.get_ticks_msec()
 			var elapsed_time = float((time_now - time_start) / 1000)
 			
@@ -432,9 +410,6 @@ func calc_accel(speed_dict):
 		last_time = time
 		last_speed = speed_dict[time]
 		first_time = false
-	print("ACCEL:")
-	print(accel)
-	print("\n")
 	return accel
 	
 func calc_abs_sq_jerks(accel_dict):
@@ -461,8 +436,6 @@ func calc_avg_stability(t_0, t_f, v_peak, jerks_dict):
 	var last_time = null
 	var last_jerks = null
 	var riemann_sum = 0.0
-	print("JERKS DICT")
-	print(jerks_dict)
 	for time in jerks_dict:
 		if !first_time:
 			riemann_sum += ((jerks_dict[time] + last_jerks) / 2 * (float(time - last_time)) / 1000)

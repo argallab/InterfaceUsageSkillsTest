@@ -7,7 +7,7 @@ func _ready():
 
 func _draw():
 #	var center_small = Vector2(22.85, -1)*pixel_scale   #the orginal dimensions given by Mahdieh but changed to make the track smooth
-	var center_small = Vector2(22.95, -1.42)*pixel_scale
+	var center_small = Vector2(22.95, -1.42)*pixel_scale #-1.42
 	var radius_small = 5*pixel_scale
 	var angle_from_small = 3*PI/2-atan(1/4.85)
 	var angle_to_small = PI/2+atan(1/4.85)

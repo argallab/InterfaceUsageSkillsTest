@@ -24,7 +24,7 @@ func _on_TrajectoryButton_pressed():
 	get_tree().change_scene("res://trajectory_following/TrajectoryFollowing.tscn")
 
 func _on_CurvedTrajectoryButton_pressed(): 
-	get_tree().change_scene("res://trajectory_following/CurvedTrajectory.tscn")
+	get_tree().change_scene("res://trajectory_following/Curved_Trajectory_Following.tscn")
 	
 func _on_UserInfo_pressed():
 	get_tree().change_scene("res://user_info/UserInfo.tscn")

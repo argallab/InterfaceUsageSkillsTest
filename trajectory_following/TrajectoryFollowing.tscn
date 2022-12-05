@@ -100,9 +100,6 @@ margin_top = -20.0
 margin_right = 203.317
 margin_bottom = -5.99997
 text = "forward"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="direction_arrow" type="Polygon2D" parent="wheelchair"]
 position = Vector2( -138.959, 136.29 )
@@ -117,9 +114,6 @@ margin_right = -90.0
 margin_bottom = 50.0
 rect_rotation = 180.0
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="collision_area" type="Area2D" parent="."]
 
