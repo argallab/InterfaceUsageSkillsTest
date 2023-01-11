@@ -62,8 +62,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if curr_value != curr_index:
-		print("curr value: ", curr_value)
-		print("curr index: ", curr_index)
+		#print("curr value: ", curr_value)
+		#print("curr index: ", curr_index)
 		# Clear the current graph
 		delete_graph()
 		
@@ -76,12 +76,12 @@ func _on_OptionButton_item_selected(index):
 	curr_value = index
 
 func get_val(val, idx):
-	print("Val:", val)
+	#print("Val:", val)
 	if [TYPE_REAL].has(typeof(val)):
 		print("returned val")
 		val = int(val)
 		return val
-	print("returned index")
+	#print("returned index")
 	return idx
 	
 func scale_x(val):
@@ -101,7 +101,8 @@ func draw_graph():
 	var line = Line2D.new()
 	line.width = line_width
 	line.default_color = line_color
-	# Grab data from SQL
+	# Grab data from SQL, needs another category for curved trajectory values
+	print(Global.user_ID) 
 	if curr_value <= 5:
 		category = command_vars[curr_value]	
 		db.query("SELECT " + category + " FROM UserSignalsCommand WHERE UserID = '" + Global.user_ID + "';")
@@ -109,8 +110,8 @@ func draw_graph():
 		category = trajectory_vars[curr_value - 6]
 		db.query("SELECT " + category + " FROM UserSignalsTrajectory WHERE UserID = " + Global.user_ID + ";")
 	y_label = category
-	print(y_label)
-	print(db.query_result)
+	#print(y_label)
+	#print(db.query_result)
 	for i in db.query_result:
 		data.append({'x': str(counter), 'y': i[category]})
 		counter += 1
@@ -118,6 +119,7 @@ func draw_graph():
 	x_ticks = data.size()
 	y_ticks = data.size()
 	
+	# variables to keep track of plottintg state 
 	if x_ticks == 0:
 		plottable = "no"
 	if x_ticks == 1:
@@ -162,15 +164,15 @@ func draw_graph():
 		#else:
 		x_tick.text = str(truncate(data[i]['x'], 2))
 		$HBoxContainer/VBoxContainer4/x_ticks_container.add_child(x_tick)
-	for i in range(y_ticks-1, -1, -1):
+	for i in range(y_ticks-1, -1, -1): #for i in range(y_ticks-1, -1, -1):
 			var y_tick = Label.new()
 			y_tick.size_flags_vertical = SIZE_EXPAND_FILL
 			y_tick.valign = VALIGN_CENTER
-			#if y_numerical:
-				#y_tick.text = str(stepify(i * (max_y-min_y) / (y_ticks-1) + min_y, 0.001)) # optional rounding
-			#else:
-			y_tick.text = str(truncate(data[y_ticks-i-1]['y'], 2))
-			print(y_tick.text)
+			if plottable == "line":
+				y_tick.text = str(stepify(i * (max_y-min_y) / (y_ticks-1) + min_y, 0.001)) # optional rounding
+			else:
+				y_tick.text = str(truncate(data[y_ticks-i-1]['y'], 2))
+			#print(y_tick.text)
 			$HBoxContainer2/y_ticks_container.add_child(y_tick)
 	
 		# fix updated rect sizes not having correct values after altering labels
@@ -180,8 +182,8 @@ func draw_graph():
 	line_rect_width = $HBoxContainer/VBoxContainer4/LineContainer.rect_size.x
 	line_rect_height = $HBoxContainer/VBoxContainer4/LineContainer.rect_size.y
 	
-	print("orig width: ", line_rect_width)
-	print("orig height: ", line_rect_height)
+	#print("orig width: ", line_rect_width)
+	#print("orig height: ", line_rect_height)
 	
 	if plottable != "no":
 		line_rect_x = (line_rect_width / x_ticks)
@@ -190,8 +192,8 @@ func draw_graph():
 		line_rect_width = line_rect_x * (x_ticks-1)
 		line_rect_height = line_rect_y * (y_ticks-1)
 		
-		print("new width: ", line_rect_width)
-		print("new height: ", line_rect_height)
+		#print("new width: ", line_rect_width)
+		#print("new height: ", line_rect_height)
 		
 	for i in range(len(data)):
 		var scaled_x = scale_x(get_val(data[i]['x'], i))
