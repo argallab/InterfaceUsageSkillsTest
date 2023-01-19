@@ -211,9 +211,9 @@ margin_bottom = 414.0
 text = "Cancel"
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="NinePatchRect/VBoxContainer"]
-margin_top = 226.0
+margin_top = 418.0
 margin_right = 330.0
-margin_bottom = 366.0
+margin_bottom = 558.0
 rect_min_size = Vector2( 300, 140 )
 window_title = "Please Confirm"
 resizable = true
@@ -221,15 +221,16 @@ dialog_text = "This User ID already exists. Are you sure that you would like to 
 dialog_autowrap = true
 
 [node name="AcceptDialog" type="AcceptDialog" parent="NinePatchRect/VBoxContainer"]
-margin_top = 226.0
+margin_top = 418.0
 margin_right = 330.0
-margin_bottom = 284.0
+margin_bottom = 476.0
 resizable = true
 dialog_text = "All fields must be filled in to submit user info."
 
 [node name="AcceptDialog2" type="AcceptDialog" parent="NinePatchRect/VBoxContainer"]
-margin_right = 83.0
-margin_bottom = 58.0
+margin_top = 418.0
+margin_right = 330.0
+margin_bottom = 476.0
 resizable = true
 dialog_text = "Inputted age must be in the form of an integer."
 dialog_autowrap = true

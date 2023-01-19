@@ -121,6 +121,7 @@ margin_top = 254.0
 margin_right = 275.0
 margin_bottom = 309.0
 rect_min_size = Vector2( 220, 55 )
+rect_clip_content = true
 size_flags_horizontal = 4
 texture_normal = ExtResource( 3 )
 expand = true
@@ -155,9 +156,31 @@ text = "Questionnaires"
 align = 1
 valign = 1
 
+[node name="DeleteRecentEntry" type="TextureButton" parent="NinePatchRect/VBoxContainer"]
+margin_left = 55.0
+margin_top = 372.0
+margin_right = 275.0
+margin_bottom = 427.0
+rect_min_size = Vector2( 220, 55 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="Delete Recent Entry" type="Label" parent="NinePatchRect/VBoxContainer/DeleteRecentEntry"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = -0.5
+margin_right = -4.00002
+margin_bottom = 3.5
+text = "Delete Recent Entry"
+align = 1
+valign = 1
+
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/CommandButton" to="." method="_on_CommandButton_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/TrajectoryButton" to="." method="_on_TrajectoryButton_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/CurvedTrajectoryButton" to="." method="_on_CurvedTrajectoryButton_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/UserResults" to="." method="_on_UserResults_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/UserInfo" to="." method="_on_UserInfo_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Questionnaires" to="." method="_on_Questionnaires_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/DeleteRecentEntry" to="." method="_on_DeleteRecentEntry_pressed"]

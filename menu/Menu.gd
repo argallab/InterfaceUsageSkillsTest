@@ -34,3 +34,9 @@ func _on_UserResults_pressed():
 
 func _on_Questionnaires_pressed():
 	get_tree().change_scene("res://questionnaires/Questionnaires.tscn")
+	
+func _on_DeleteRecentEntry_pressed():
+	get_tree().change_scene("res://delete_data/DeleteData.tscn")
+
+
+
