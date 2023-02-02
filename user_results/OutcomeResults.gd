@@ -1,4 +1,7 @@
 extends Control
+#Dropdown code
+export (NodePath) var dropdown_path
+onready var dropdown = get_node(dropdown_path)
 
 export var line_width = 5
 export(Color) var line_color
@@ -45,14 +48,13 @@ var curr_value = 0
 var curr_index = 0
 var category = ""
 var command_vars = ["tR", "percentR", "tS", "percentS", "init_rA", "avg_sA"]
-var trajectory_vars = ["nBB", "tOB", "PercentOB", "avg_stability", "avg_x_total",
-"avg_y_total", "avg_speed_total", "avg_x_half1", "avg_y_half1", "avg_speed_half1",
-"avg_x_half2", "avg_y_half2", "avg_speed_half2", "avg_rot_half1", "avg_rot_half2",
-"avg_rot_total"]
+var trajectory_vars = ["avg_stability", "avg_speed_total", "avg_rot_total", "PercentOB", "Time"]
+var curved_vars = ["avg_stability", "avg_speed_total", "PercentOB", "Time"]
 var counter = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_items()
 	db = SQLite.new()
 	db.path = db_name
 	db.open_db()
@@ -74,7 +76,9 @@ func _process(_delta):
 
 func _on_OptionButton_item_selected(index):
 	curr_value = index
-
+func _on_dropdown_item_selected(index):
+	curr_value = index
+	
 func get_val(val, idx):
 	#print("Val:", val)
 	if [TYPE_REAL].has(typeof(val)):
@@ -106,9 +110,12 @@ func draw_graph():
 	if curr_value <= 5:
 		category = command_vars[curr_value]	
 		db.query("SELECT " + category + " FROM UserSignalsCommand WHERE UserID = '" + Global.user_ID + "';")
-	else:
+	elif curr_value >= 6 and curr_value <= 10:
 		category = trajectory_vars[curr_value - 6]
 		db.query("SELECT " + category + " FROM UserSignalsTrajectory WHERE UserID = " + Global.user_ID + ";")
+	else: 
+		category = curved_vars[curr_value - 11]
+		db.query("SELECT " + category + " FROM UserSignalsCurvedTrajectory WHERE UserID = " + Global.user_ID + ";")
 	y_label = category
 	#print(y_label)
 	#print(db.query_result)
@@ -244,4 +251,20 @@ func truncate(number, digits):
 			return number
 		else:
 			return number
+func add_items():
+	dropdown.add_item("Average response time")
+	dropdown.add_item("Average succesful response percent")
+	dropdown.add_item("Average settling time")
+	dropdown.add_item("Average succesful settling percent")
+	dropdown.add_item("Initial response accuracy")
+	dropdown.add_item("Average settling accuracy")
+	dropdown.add_item("Smoothness - Straight")
+	dropdown.add_item("Linear Speed - Straight")
+	dropdown.add_item("Angular Speed - Straight")
+	dropdown.add_item("Percent OB - Straight")
+	dropdown.add_item("Time - Straight")
+	dropdown.add_item("Smoothness - Curved")
+	dropdown.add_item("Speed -  Curved")
+	dropdown.add_item("Percent OB -  Curved")
+	dropdown.add_item("Time - Curved")
 	

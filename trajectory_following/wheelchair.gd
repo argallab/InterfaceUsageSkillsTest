@@ -362,7 +362,7 @@ func change_display_directions():
 			date_time = month + "/" + day + "/" + year + "   " + hour + ":" + minute
 			# SQL query
 			db.open_db()
-			var db_query = "insert into UserSignalsTrajectory (UserID, nBB, tOB, PercentOB, avg_stability, avg_x_total, avg_y_total, avg_speed_total, avg_x_half1, avg_y_half1, avg_speed_half1, avg_x_half2, avg_y_half2, avg_speed_half2, avg_rot_total, Date) values ('"
+			var db_query = "insert into UserSignalsTrajectory (UserID, nBB, tOB, PercentOB, avg_stability, avg_x_total, avg_y_total, avg_speed_total, avg_x_half1, avg_y_half1, avg_speed_half1, avg_x_half2, avg_y_half2, avg_speed_half2, avg_rot_total, Date, Time) values ('"
 			db_query += Global.user_ID + "', '"
 			#db_query += Global.trial_ID + "', '"
 			db_query += str(nBB) + "', '"
@@ -379,7 +379,8 @@ func change_display_directions():
 			db_query += str(Global.avg_y_speed) + "', '"
 			db_query += str(Global.avg_speed) + "', '"
 			db_query += str(Global.avg_rot_speed) + "', '"
-			db_query += date_time + "')"
+			db_query += date_time + "', '"
+			db_query += str(elapsed_time) + "')"
 			var success = db.query(db_query)
 			if not success:
 				print(db.error_message)

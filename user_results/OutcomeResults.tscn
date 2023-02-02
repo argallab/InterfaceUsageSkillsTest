@@ -6,6 +6,7 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+dropdown_path = NodePath("HBoxContainer/VBoxContainer4/dropdown")
 line_color = Color( 0.862745, 0.533333, 0.533333, 1 )
 bg_color = Color( 0.45098, 0.45098, 0.45098, 1 )
 
@@ -54,17 +55,23 @@ margin_bottom = 14.0
 text = "User Outcome Results"
 align = 1
 
-[node name="OptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer4"]
+[node name="dropdown" type="OptionButton" parent="HBoxContainer/VBoxContainer4"]
 margin_top = 18.0
 margin_right = 280.0
 margin_bottom = 38.0
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer4"]
+visible = false
+margin_top = 42.0
+margin_right = 280.0
+margin_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-text = "Average response time"
+text = "Average X Speed - Straight Paths"
 clip_text = true
 items = [ "Average response time", null, false, 0, null, "Average successful response percent", null, false, 1, null, "Average settling time", null, false, 2, null, "Average successful settling percent", null, false, 3, null, "Initial response accuracy", null, false, 4, null, "Average settling accuracy", null, false, 5, null, "Smoothness", null, false, 6, null, "Average X Speed - Straight Paths", null, false, 7, null, "Average X Speed - Curved Path", null, false, 8, null, "Average Y Speed - Straight Path", null, false, 9, null, "Average Y Speed - Curved Path", null, false, 10, null, "Average Combined Speed - Straight Path", null, false, 11, null, "Average Combined Speed - Curved Path", null, false, 12, null, "Percent out of Bounds", null, false, 13, null, "Trial Time", null, false, 14, null ]
-selected = 0
+selected = 7
 
 [node name="LineContainer" type="Control" parent="HBoxContainer/VBoxContainer4"]
 margin_top = 42.0
@@ -95,4 +102,5 @@ size_flags_horizontal = 3
 text = "x-axis"
 align = 1
 
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer4/dropdown" to="." method="_on_dropdown_item_selected"]
 [connection signal="item_selected" from="HBoxContainer/VBoxContainer4/OptionButton" to="." method="_on_OptionButton_item_selected"]
