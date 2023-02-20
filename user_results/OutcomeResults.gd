@@ -42,7 +42,8 @@ var data = []
 
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 var db
-var db_name = "res://UserDataStore/userdatabase"
+var db_name = "res://UserDataStore/userdatabase.db"
+var db_name_user = "user://userdatabase.db"
 
 var curr_value = 0
 var curr_index = 0
@@ -55,8 +56,15 @@ var counter = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_items()
+
+	var dir = Directory.new();
+	#Testing some functionality with Android 
+	if !dir.file_exists(db_name_user):
+		dir.copy(db_name, db_name_user);
+		print("Copied db file to users dir")
+	# Initialize the path to database
 	db = SQLite.new()
-	db.path = db_name
+	db.path = db_name_user
 	db.open_db()
 
 	draw_graph()

@@ -73,6 +73,11 @@ var motiv_q15 = 1
 var motiv_q16 = 1
 var motiv_q17 = 1
 var motiv_q18 = 1
+var motiv_q19 = 1
+var motiv_q20 = 1
+var motiv_q21 = 1
+var motiv_q22 = 1
+var motiv_q23 = 1
 
 # Variables for stress questionnaire answers
 var worries1 = 0

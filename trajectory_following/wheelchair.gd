@@ -2,7 +2,10 @@ extends Area2D
 
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 var db
-var db_name = "res://UserDataStore/userdatabase"
+var db_name = "res://UserDataStore/userdatabase.db"
+var db_name_user = "user://userdatabase.db"
+
+
 
 # Constants to determine max speeds
 var rotation_speed = 0.01
@@ -118,9 +121,15 @@ func _ready():
 	rotation = PI
 	get_node('../curve_collision_area').hide()
 	
+	var dir = Directory.new();
+	#Testing some functionality with Android 
+	if !dir.file_exists(db_name_user):
+		dir.copy(db_name, db_name_user);
+		print("Copied db file to users dir")
+	# Initialize the path to database
 	db = SQLite.new()
-	db.path = db_name
-	
+	db.path = db_name_user
+	db.open_db()
 	# Initialize the start time
 	time_start = OS.get_ticks_msec()
 	

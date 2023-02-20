@@ -32,7 +32,7 @@ __meta__ = {
 [node name="Q6" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_right = 333.0
 margin_bottom = 14.0
-text = "I thought this activity was quite enjoyable."
+text = "This activity is important for my improvement "
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 18.0
@@ -110,14 +110,13 @@ align = 1
 [node name="Q7" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_top = 73.0
 margin_right = 333.0
-margin_bottom = 104.0
-text = "While I was doing this activity, I was thinking about
-how much I enjoyed it."
+margin_bottom = 87.0
+text = "I enoyed doing this activity very much"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 108.0
+margin_top = 91.0
 margin_right = 333.0
-margin_bottom = 124.0
+margin_bottom = 107.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer3"]
 margin_right = 25.0
@@ -142,9 +141,9 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 25, 0 )
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 128.0
+margin_top = 111.0
 margin_right = 333.0
-margin_bottom = 159.0
+margin_bottom = 142.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
 margin_right = 5.0
@@ -188,10 +187,11 @@ true"
 align = 1
 
 [node name="Q8" type="Label" parent="NinePatchRect/VBoxContainer"]
-margin_top = 163.0
+margin_top = 146.0
 margin_right = 333.0
 margin_bottom = 177.0
-text = "I think I am pretty good at this activity."
+text = "I really did not have a choice about doing 
+this activity"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 181.0
@@ -269,14 +269,13 @@ align = 1
 [node name="Q9" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_top = 236.0
 margin_right = 333.0
-margin_bottom = 267.0
-text = "I think I did pretty well in this activity, compared to
-others."
+margin_bottom = 250.0
+text = "I did this activity because I wanted to"
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 271.0
+margin_top = 254.0
 margin_right = 333.0
-margin_bottom = 287.0
+margin_bottom = 270.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer7"]
 margin_right = 25.0
@@ -301,9 +300,9 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 25, 0 )
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 291.0
+margin_top = 274.0
 margin_right = 333.0
-margin_bottom = 322.0
+margin_bottom = 305.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer8"]
 margin_right = 5.0
@@ -347,16 +346,15 @@ true"
 align = 1
 
 [node name="Q10" type="Label" parent="NinePatchRect/VBoxContainer"]
-margin_top = 326.0
+margin_top = 309.0
 margin_right = 333.0
-margin_bottom = 357.0
-text = "After working at this activity for a while, I felt pretty
-competent."
+margin_bottom = 323.0
+text = "I think this is an important activity"
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 361.0
+margin_top = 327.0
 margin_right = 333.0
-margin_bottom = 377.0
+margin_bottom = 343.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer9"]
 margin_right = 25.0
@@ -381,9 +379,9 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 25, 0 )
 
 [node name="HBoxContainer10" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 381.0
+margin_top = 347.0
 margin_right = 333.0
-margin_bottom = 412.0
+margin_bottom = 378.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer10"]
 margin_right = 5.0
@@ -427,10 +425,11 @@ true"
 align = 1
 
 [node name="Button" type="Button" parent="NinePatchRect/VBoxContainer"]
-margin_top = 416.0
+margin_top = 382.0
 margin_right = 333.0
-margin_bottom = 436.0
+margin_bottom = 402.0
 text = "Next"
+
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/HSlider6" to="." method="_on_HSlider6_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/HSlider7" to="." method="_on_HSlider7_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer5/HSlider8" to="." method="_on_HSlider8_value_changed"]

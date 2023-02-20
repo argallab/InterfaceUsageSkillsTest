@@ -45,7 +45,7 @@ rect_min_size = Vector2( 0, 15 )
 margin_top = 37.0
 margin_right = 330.0
 margin_bottom = 51.0
-text = "You feel you're doing things you really like."
+text = "You feel discouraged"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 55.0
@@ -135,7 +135,7 @@ text = "Usually"
 margin_top = 110.0
 margin_right = 330.0
 margin_bottom = 124.0
-text = "You enjoy yourself."
+text = "You enjoy yourself"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 128.0
@@ -224,13 +224,14 @@ text = "Usually"
 [node name="JoyQ3" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_top = 183.0
 margin_right = 330.0
-margin_bottom = 197.0
-text = "You are lighthearted."
+margin_bottom = 214.0
+text = "You feel you are doing things because you
+have to and not because you want to"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 201.0
+margin_top = 218.0
 margin_right = 330.0
-margin_bottom = 217.0
+margin_bottom = 234.0
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
@@ -255,9 +256,9 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 5, 0 )
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 221.0
+margin_top = 238.0
 margin_right = 330.0
-margin_bottom = 252.0
+margin_bottom = 269.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
 margin_right = 10.0
@@ -312,15 +313,15 @@ margin_bottom = 22.0
 text = "Usually"
 
 [node name="JoyQ4" type="Label" parent="NinePatchRect/VBoxContainer"]
-margin_top = 256.0
+margin_top = 273.0
 margin_right = 330.0
-margin_bottom = 270.0
-text = "You are full of energy."
+margin_bottom = 287.0
+text = "You feel criticized or judged"
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 274.0
+margin_top = 291.0
 margin_right = 330.0
-margin_bottom = 290.0
+margin_bottom = 307.0
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer7"]
@@ -345,9 +346,9 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 5, 0 )
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 294.0
+margin_top = 311.0
 margin_right = 330.0
-margin_bottom = 325.0
+margin_bottom = 342.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer8"]
 margin_right = 10.0
@@ -402,15 +403,15 @@ margin_bottom = 22.0
 text = "Usually"
 
 [node name="JoyQ5" type="Label" parent="NinePatchRect/VBoxContainer"]
-margin_top = 329.0
+margin_top = 346.0
 margin_right = 330.0
-margin_bottom = 343.0
-text = "You feel safe and protected."
+margin_bottom = 360.0
+text = "You feel mentally exhausted."
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 347.0
+margin_top = 364.0
 margin_right = 330.0
-margin_bottom = 363.0
+margin_bottom = 380.0
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer9"]
@@ -435,9 +436,9 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 5, 0 )
 
 [node name="HBoxContainer10" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 367.0
+margin_top = 384.0
 margin_right = 330.0
-margin_bottom = 398.0
+margin_bottom = 415.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer10"]
 margin_right = 10.0
@@ -492,9 +493,9 @@ margin_bottom = 22.0
 text = "Usually"
 
 [node name="Button" type="Button" parent="NinePatchRect/VBoxContainer"]
-margin_top = 402.0
+margin_top = 419.0
 margin_right = 330.0
-margin_bottom = 422.0
+margin_bottom = 439.0
 text = "Next"
 
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/HSlider_J1" to="." method="_on_HSlider_J1_value_changed"]

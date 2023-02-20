@@ -26,9 +26,6 @@ margin_top = 60.0
 margin_right = 75.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 330, 420 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StressTitle" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_right = 333.0
@@ -46,7 +43,7 @@ rect_min_size = Vector2( 0, 15 )
 margin_top = 37.0
 margin_right = 333.0
 margin_bottom = 51.0
-text = "You feel tense."
+text = "You are full of energy"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 55.0
@@ -136,7 +133,7 @@ text = "Usually"
 margin_top = 110.0
 margin_right = 333.0
 margin_bottom = 124.0
-text = "You feel rested."
+text = "You feel tense"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 128.0
@@ -225,7 +222,7 @@ text = "Usually"
 margin_top = 183.0
 margin_right = 333.0
 margin_bottom = 197.0
-text = "You feel mentally exhausted."
+text = "You feel you're in a hurry"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 201.0
@@ -314,7 +311,7 @@ text = "Usually"
 margin_top = 256.0
 margin_right = 333.0
 margin_bottom = 270.0
-text = "You have trouble relaxing."
+text = "You feel safe and protected"
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 274.0
@@ -403,7 +400,7 @@ text = "Usually"
 margin_top = 329.0
 margin_right = 333.0
 margin_bottom = 343.0
-text = "You feel calm."
+text = "You are under pressure from other people"
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 347.0

@@ -7,9 +7,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_left = 312.0
@@ -25,14 +22,11 @@ margin_top = 60.0
 margin_right = 365.0
 margin_bottom = 480.0
 rect_min_size = Vector2( 330, 420 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Question6" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_right = 333.0
 margin_bottom = 14.0
-text = "Are you lacking in energy?"
+text = "Do you have difficulties concentrating?"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 18.0
@@ -104,7 +98,7 @@ align = 1
 margin_top = 73.0
 margin_right = 333.0
 margin_bottom = 87.0
-text = "Do you have less strength in your muscles?"
+text = "How is your memory?"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 91.0
@@ -172,90 +166,25 @@ text = "Better than
 usual"
 align = 1
 
-[node name="Question8" type="Label" parent="NinePatchRect/VBoxContainer"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 146.0
 margin_right = 333.0
-margin_bottom = 160.0
-text = "Do you feel weak?"
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 164.0
-margin_right = 333.0
-margin_bottom = 180.0
-
-[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
-margin_right = 25.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 25, 0 )
-
-[node name="HSlider8" type="HSlider" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
-margin_left = 29.0
-margin_right = 304.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 275, 0 )
-max_value = 3.0
-tick_count = 4
-ticks_on_borders = true
-
-[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
-margin_left = 308.0
-margin_right = 333.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 25, 0 )
-
-[node name="HBoxContainer6" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 184.0
-margin_right = 333.0
-margin_bottom = 215.0
-
-[node name="MuchWorsethanUsual" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
-margin_right = 77.0
-margin_bottom = 31.0
-text = "Much worse
-than usual"
-align = 1
+margin_bottom = 146.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
-margin_left = 81.0
-margin_right = 81.0
-margin_bottom = 31.0
-
-[node name="WorsethanUsual" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
-margin_left = 85.0
-margin_right = 158.0
-margin_bottom = 31.0
-text = "Worse than
-usual"
-align = 1
-
-[node name="NomorethanUsual" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
-margin_left = 162.0
-margin_right = 250.0
-margin_bottom = 31.0
-text = "No more than
-usual"
-align = 1
-
-[node name="BetterthanUsual" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
-margin_left = 254.0
-margin_right = 326.0
-margin_bottom = 31.0
-text = "Better than
-usual"
-align = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 219.0
+margin_top = 150.0
 margin_right = 333.0
-margin_bottom = 319.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 0, 100 )
 
 [node name="Button" type="Button" parent="NinePatchRect/VBoxContainer"]
-margin_top = 323.0
+margin_top = 254.0
 margin_right = 333.0
-margin_bottom = 343.0
+margin_bottom = 274.0
 text = "Next"
+
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/HSlider6" to="." method="_on_HSlider6_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/HSlider7" to="." method="_on_HSlider7_value_changed"]
-[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer5/HSlider8" to="." method="_on_HSlider8_value_changed"]
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/Button" to="." method="_on_Button_button_up"]

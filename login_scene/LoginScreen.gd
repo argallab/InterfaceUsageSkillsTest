@@ -2,20 +2,20 @@ extends Control
 
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 var db
-var db_name = "res://UserDataStore/userdatabase"
+var db_name = "res://UserDataStore/userdatabase.db"
+var db_name_user = "user://userdatabase.db"
 var password = ""
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var dir = Directory.new();
+	#Testing some functionality with Android 
+	if !dir.file_exists(db_name_user):
+		dir.copy(db_name, db_name_user);
+		print("Copied db file to users dir")
 	# Initialize the path to database
 	db = SQLite.new()
-	db.path = db_name
+	db.path = db_name_user
 	db.open_db()
 
 
@@ -43,6 +43,22 @@ func _on_LoginButton_pressed():
 	else:
 		print("Login failed. Please try again!")
 
+#Fake Test for touchscreen buttons
+func _on_TouchScreenButton_pressed():
+	var query_string : String = "SELECT * FROM TherapistInfo WHERE Username = ? AND Password = ?;"
+	var param_bindings : Array = [Global.username, password]
+	var success = db.query_with_bindings(query_string, param_bindings)
+	if not success:
+		print("Query failure: " + db.error_message)
+		return
+	
+	if db.query_result:
+		print("Login successful")
+		get_tree().change_scene("res://menu/Menu.tscn")
+		db.query("SELECT UserID FROM UserInfo WHERE Username = '" + Global.username + "';")
+		Global.user_ID = _filter_from_dbquery(db.query_result)
+	else:
+		print("Login failed. Please try again!")
 
 # Adds given username and password to database if the user chooses to create a profile
 func _on_CreateUserButton_pressed():

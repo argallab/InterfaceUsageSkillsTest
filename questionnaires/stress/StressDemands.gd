@@ -7,13 +7,28 @@ extends Control
 
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 var db
-var db_name = "res://UserDataStore/userdatabase"
+var db_name = "res://UserDataStore/userdatabase.db"
+var db_name_user = "user://userdatabase.db"
+var password = ""
+
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var dir = Directory.new();
+	#Testing some functionality with Android 
+	if !dir.file_exists(db_name_user):
+		dir.copy(db_name, db_name_user);
+		print("Copied db file to users dir")
+	# Initialize the path to database
 	db = SQLite.new()
-	db.path = db_name
+	db.path = db_name_user
+	db.open_db()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

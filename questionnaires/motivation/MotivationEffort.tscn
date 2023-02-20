@@ -25,14 +25,11 @@ margin_top = 60.0
 margin_right = 365.0
 margin_bottom = 480.0
 rect_min_size = Vector2( 330, 420 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Q16" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_right = 333.0
 margin_bottom = 14.0
-text = "I tried very hard on this activity."
+text = "I would describe this activity as very enjoyable"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 18.0
@@ -111,7 +108,7 @@ align = 1
 margin_top = 73.0
 margin_right = 333.0
 margin_bottom = 87.0
-text = "It was important to me to do well at this task."
+text = "I felt like I had to do this activity"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 91.0
@@ -189,13 +186,14 @@ align = 1
 [node name="Q18" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_top = 146.0
 margin_right = 333.0
-margin_bottom = 160.0
-text = "I didn't put much energy into this."
+margin_bottom = 177.0
+text = "I believe doing this activity could be somewhat
+beneficial to me "
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 164.0
+margin_top = 181.0
 margin_right = 333.0
-margin_bottom = 180.0
+margin_bottom = 197.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
 margin_right = 25.0
@@ -220,9 +218,9 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 25, 0 )
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-margin_top = 184.0
+margin_top = 201.0
 margin_right = 333.0
-margin_bottom = 215.0
+margin_bottom = 232.0
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
 margin_right = 5.0
@@ -265,12 +263,173 @@ text = "Very
 true"
 align = 1
 
-[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer"]
-margin_top = 219.0
+[node name="Q19" type="Label" parent="NinePatchRect/VBoxContainer"]
+margin_top = 236.0
 margin_right = 333.0
-margin_bottom = 239.0
-text = "Finish"
+margin_bottom = 250.0
+text = "I did this activity because I had to "
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 254.0
+margin_right = 333.0
+margin_bottom = 270.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer7"]
+margin_right = 25.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="HSlider19" type="HSlider" parent="NinePatchRect/VBoxContainer/HBoxContainer7"]
+margin_left = 29.0
+margin_right = 304.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 275, 0 )
+min_value = 1.0
+max_value = 7.0
+value = 1.0
+tick_count = 7
+ticks_on_borders = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer7"]
+margin_left = 308.0
+margin_right = 333.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 274.0
+margin_right = 333.0
+margin_bottom = 305.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer8"]
+margin_right = 5.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 5, 0 )
+
+[node name="NotatallTrue" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer8"]
+margin_left = 9.0
+margin_right = 67.0
+margin_bottom = 31.0
+text = "Not at all
+true"
+align = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer8"]
+margin_left = 71.0
+margin_right = 131.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 60, 0 )
+
+[node name="SomewhatTrue" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer8"]
+margin_left = 135.0
+margin_right = 201.0
+margin_bottom = 31.0
+text = "Somewhat
+true"
+align = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer8"]
+margin_left = 205.0
+margin_right = 280.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 75, 0 )
+
+[node name="VeryTrue" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer8"]
+margin_left = 284.0
+margin_right = 312.0
+margin_bottom = 31.0
+text = "Very
+true"
+align = 1
+
+[node name="Q20" type="Label" parent="NinePatchRect/VBoxContainer"]
+margin_top = 309.0
+margin_right = 333.0
+margin_bottom = 323.0
+text = "While doing this activity I felt like I had a choice "
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 327.0
+margin_right = 333.0
+margin_bottom = 343.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer9"]
+margin_right = 25.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="HSlider20" type="HSlider" parent="NinePatchRect/VBoxContainer/HBoxContainer9"]
+margin_left = 29.0
+margin_right = 304.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 275, 0 )
+min_value = 1.0
+max_value = 7.0
+value = 1.0
+tick_count = 7
+ticks_on_borders = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer9"]
+margin_left = 308.0
+margin_right = 333.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 347.0
+margin_right = 333.0
+margin_bottom = 378.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer10"]
+margin_right = 5.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 5, 0 )
+
+[node name="NotatallTrue" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer10"]
+margin_left = 9.0
+margin_right = 67.0
+margin_bottom = 31.0
+text = "Not at all
+true"
+align = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer10"]
+margin_left = 71.0
+margin_right = 131.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 60, 0 )
+
+[node name="SomewhatTrue" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer10"]
+margin_left = 135.0
+margin_right = 201.0
+margin_bottom = 31.0
+text = "Somewhat
+true"
+align = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer10"]
+margin_left = 205.0
+margin_right = 280.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 75, 0 )
+
+[node name="VeryTrue" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer10"]
+margin_left = 284.0
+margin_right = 312.0
+margin_bottom = 31.0
+text = "Very
+true"
+align = 1
+
+[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 382.0
+margin_right = 333.0
+margin_bottom = 402.0
+text = "Next"
+
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/HSlider16" to="." method="_on_HSlider16_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/HSlider17" to="." method="_on_HSlider17_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer5/HSlider18" to="." method="_on_HSlider18_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer7/HSlider19" to="." method="_on_HSlider19_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer9/HSlider20" to="." method="_on_HSlider20_value_changed"]
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/Button" to="." method="_on_Button_button_up"]

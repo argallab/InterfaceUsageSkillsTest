@@ -28,9 +28,6 @@ margin_top = 60.0
 margin_right = 75.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 330, 420 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StressTitle" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_right = 333.0
@@ -48,7 +45,7 @@ rect_min_size = Vector2( 0, 25 )
 margin_top = 47.0
 margin_right = 333.0
 margin_bottom = 61.0
-text = "You are afraid for the future."
+text = "You feel rested"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 65.0
@@ -136,7 +133,7 @@ text = "Usually"
 margin_top = 120.0
 margin_right = 333.0
 margin_bottom = 134.0
-text = "You have many worries."
+text = "You feel you're doing things you really like "
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 138.0
@@ -224,7 +221,7 @@ text = "Usually"
 margin_top = 193.0
 margin_right = 333.0
 margin_bottom = 207.0
-text = "Your problems seem to be piling up."
+text = "You feel tired"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 211.0
@@ -312,7 +309,7 @@ text = "Usually"
 margin_top = 266.0
 margin_right = 333.0
 margin_bottom = 280.0
-text = "You fear you may not manage to attain your goals."
+text = "You feel calm"
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 284.0
@@ -400,7 +397,7 @@ text = "Usually"
 margin_top = 339.0
 margin_right = 333.0
 margin_bottom = 353.0
-text = "You feel frustrated."
+text = "You feel frustrated"
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_top = 357.0
@@ -490,6 +487,7 @@ margin_right = 333.0
 margin_bottom = 432.0
 rect_pivot_offset = Vector2( 167, -332.5 )
 text = "Next"
+
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/HSlider_W1" to="." method="_on_HSlider_W1_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/HSlider_W2" to="." method="_on_HSlider_W2_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer5/HSlider_W3" to="." method="_on_HSlider_W3_value_changed"]

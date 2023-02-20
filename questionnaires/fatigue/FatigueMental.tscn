@@ -1,7 +1,76 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://black_background.jpg" type="Texture" id=1]
-[ext_resource path="res://questionnaires/fatigue/FatigueMental.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+const SQLite = preload(\"res://addons/godot-sqlite/bin/gdsqlite.gdns\")
+var db
+var db_name = \"res://UserDataStore/userdatabase\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	db = SQLite.new()
+	db.path = db_name
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_HSlider9_value_changed(value):
+	Global.fatigue_q9 = value
+
+
+func _on_HSlider10_value_changed(value):
+	Global.fatigue_q10 = value
+
+
+func _on_HSlider11_value_changed(value):
+	Global.fatigue_q11 = value
+
+
+func _on_HSlider12_value_changed(value):
+	Global.fatigue_q12 = value
+
+
+func _on_HSlider13_value_changed(value):
+	Global.fatigue_q13 = value
+
+
+func _on_HSlider14_value_changed(value):
+	Global.fatigue_q14 = value
+
+
+func _on_Button_button_up():
+	db.open_db()
+	var db_query = \"insert into FatigueQuestions (UserID, Physical1, Physical2, Physical3, Physical4, Physical5, Physical6, Physical7, Physical8, Mental1, Mental2, Mental3, Mental4, Mental5, Mental6) values ('\" + Global.user_ID
+	db_query += \"', '\" + str(Global.fatigue_q1)
+	db_query += \"', '\" + str(Global.fatigue_q2)
+	db_query += \"', '\" + str(Global.fatigue_q3)
+	db_query += \"', '\" + str(Global.fatigue_q4)
+	db_query += \"', '\" + str(Global.fatigue_q5)
+	db_query += \"', '\" + str(Global.fatigue_q6)
+	db_query += \"', '\" + str(Global.fatigue_q7)
+	db_query += \"', '\" + str(Global.fatigue_q8)
+	db_query += \"', '\" + str(Global.fatigue_q9)
+	db_query += \"', '\" + str(Global.fatigue_q10)
+	db_query += \"', '\" + str(Global.fatigue_q11)
+	db_query += \"', '\" + str(Global.fatigue_q12)
+	db_query += \"', '\" + str(Global.fatigue_q13)
+	db_query += \"', '\" + str(Global.fatigue_q14)
+	db_query += \"')\"
+	db.query(db_query)
+	
+	get_tree().change_scene(\"res://questionnaires/Questionnaires.tscn\")
+"
 
 [node name="FatigueMental" type="Control"]
 anchor_right = 1.0
@@ -11,7 +80,7 @@ margin_top = 37.5
 margin_right = -312.0
 margin_bottom = -37.5
 rect_min_size = Vector2( 400, 525 )
-script = ExtResource( 2 )
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -437,6 +506,7 @@ margin_top = 438.0
 margin_right = 336.0
 margin_bottom = 458.0
 text = "Finish"
+
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/HSlider9" to="." method="_on_HSlider9_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/HSlider10" to="." method="_on_HSlider10_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer5/HSlider11" to="." method="_on_HSlider11_value_changed"]

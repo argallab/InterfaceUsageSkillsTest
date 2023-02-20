@@ -490,6 +490,7 @@ margin_top = 419.0
 margin_right = 333.0
 margin_bottom = 439.0
 text = "Finish"
+
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/HSlider_D1" to="." method="_on_HSlider_D1_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/HSlider_D2" to="." method="_on_HSlider_D2_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer5/HSlider_D3" to="." method="_on_HSlider_D3_value_changed"]
