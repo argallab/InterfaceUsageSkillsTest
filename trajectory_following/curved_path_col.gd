@@ -17,7 +17,7 @@ func _draw():
 	var angle_from_large = atan(4.0/9.0)-PI/2 #from mahdiehs drawing
 	var angle_to_large = -angle_from_large
 	
-	var color = Color(1.0, 1.0, 1.0)
+	var color = Color(1.0, 200.0, 1.0)
 	var thickness = 100
 	draw_circle_arc_thick(center_small, radius_small, angle_from_small, angle_to_small, color, thickness)
 	draw_circle_arc_thick(center_large, radius_large, angle_from_large, angle_to_large, color, thickness)

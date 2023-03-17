@@ -129,6 +129,10 @@ var performance_slider = 0
 var effort_slider = 0
 var temporal_slider = 0
 
+#variables for discretized curve path 
+var time_outside_good = 0.0
+var time_outside_bad = 0.0 
+var time_outside_worse = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

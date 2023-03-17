@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color( 0.196078, 0.172549, 0.172549, 1 )
 margin_left = 312.0
 margin_top = 37.5
 margin_right = 712.0

@@ -2,7 +2,10 @@
 
 [ext_resource path="res://login_scene/LoginScreen.gd" type="Script" id=1]
 [ext_resource path="res://button03.png" type="Texture" id=2]
-[ext_resource path="res://black_background.jpg" type="Texture" id=3]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/black_background.jpg-5f5c6ccded065276638c9f98da2f70fe.stex"
 
 [node name="LoginScreen" type="Control"]
 anchor_right = 1.0
@@ -15,14 +18,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -200.0
-margin_top = -262.5
+margin_top = -262.0
 margin_right = 200.0
-margin_bottom = 262.5
+margin_bottom = 263.0
 rect_min_size = Vector2( 400, 525 )
-texture = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = SubResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
 anchor_right = 1.0
@@ -31,9 +31,6 @@ margin_left = 35.0
 margin_top = 60.0
 margin_right = -35.0
 margin_bottom = -45.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_right = 330.0

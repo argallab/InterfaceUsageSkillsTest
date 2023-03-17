@@ -102,7 +102,8 @@ var dlj_3 = 0.0
 var dlj_4 = 0.0
 var dlj_curve = 0.0
 
-# var input_type = "keyboard"
+#var input_type = "keyboard"
+#var input_type = "mouse"
 var input_type = "controller"
 
 # For Date and Time
@@ -141,6 +142,9 @@ func _ready():
 func _process(delta):
 	if input_type == "keyboard":
 		# Store x and y inputs as 0 or 1 values based off arrow keys
+		inpx = (int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")))
+		inpy = (int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up")))
+	elif input_type == "mouse": 
 		inpx = (int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")))
 		inpy = (int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up")))
 	else:
