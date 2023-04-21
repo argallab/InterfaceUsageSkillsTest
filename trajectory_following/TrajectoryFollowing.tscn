@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://trajectory_following/wheelchair.gd" type="Script" id=1]
 [ext_resource path="res://trajectory_following/512px-Circle_no_arrow.svg.png" type="Texture" id=2]
 [ext_resource path="res://rosco_color.jpg" type="Texture" id=3]
-[ext_resource path="res://trajectory_following/curved_path_col.gd" type="Script" id=4]
 
 [node name="TrajectoryFollowing" type="Node"]
 
@@ -83,23 +82,9 @@ position = Vector2( -40, -50 )
 polygon = PoolVector2Array( 0, 0, 80, 0, 80, 100, 40, 120, 0, 100 )
 
 [node name="Sprite" type="Sprite" parent="wheelchair"]
-position = Vector2( -0.179977, 0.521118 )
+position = Vector2( -0.17997, 0.521099 )
 scale = Vector2( 0.153835, 0.197667 )
 texture = ExtResource( 3 )
-
-[node name="Camera2D" type="Camera2D" parent="wheelchair"]
-position = Vector2( 40, 50 )
-rotation = -3.14159
-rotating = true
-current = true
-zoom = Vector2( 0.5, 0.5 )
-
-[node name="direction_label" type="Label" parent="wheelchair/Camera2D"]
-margin_left = 180.0
-margin_top = -20.0
-margin_right = 203.317
-margin_bottom = -5.99997
-text = "forward"
 
 [node name="direction_arrow" type="Polygon2D" parent="wheelchair"]
 position = Vector2( -138.959, 136.29 )
@@ -108,10 +93,25 @@ color = Color( 0.27451, 0.952941, 0.0588235, 1 )
 offset = Vector2( -30, -75 )
 polygon = PoolVector2Array( 20, 0, 20, 100, 50, 80, 50, 120, 0, 150, -50, 120, -50, 80, -20, 100, -20, 0 )
 
-[node name="BackButton" type="Button" parent="wheelchair"]
-margin_left = -140.0
-margin_right = -90.0
-margin_bottom = 50.0
+[node name="CameraNode" type="Camera2D" parent="wheelchair"]
+position = Vector2( 40, 50 )
+rotation = -3.14159
+rotating = true
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="direction_label" type="Label" parent="wheelchair/CameraNode"]
+margin_left = 180.0
+margin_top = -20.0
+margin_right = 227.0
+margin_bottom = -5.99995
+text = "forward"
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = -100.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = 100.0
 rect_rotation = 180.0
 text = "Back"
 
@@ -127,24 +127,6 @@ polygon = PoolVector2Array( -35, 635, 135, 635, 135, 610, 465, 610, 465, 635, 63
 [node name="outside_2" type="CollisionPolygon2D" parent="collision_area"]
 position = Vector2( 0, -0.943878 )
 polygon = PoolVector2Array( 1200, -500, -625, -500, -625, 1000, -35, 635, -35, 465, -10, 465, -10, 135, -35, 135, -35, -35, 135, -35, 135, -10, 465, -10, 465, -35, 635, -35 )
-
-[node name="curve_collision_area" type="Area2D" parent="."]
-
-[node name="curve_1" type="CollisionPolygon2D" parent="curve_collision_area"]
-position = Vector2( 550, 550 )
-script = ExtResource( 4 )
-
-[node name="curve_2" type="CollisionPolygon2D" parent="curve_collision_area/curve_1"]
-position = Vector2( 1664, 0 )
-rotation = -3.14159
-script = ExtResource( 4 )
-
-[node name="finish" type="Polygon2D" parent="curve_collision_area/curve_1"]
-position = Vector2( 1650, 0 )
-rotation = 0.261799
-color = Color( 0.407843, 0.639216, 0.698039, 1 )
-offset = Vector2( -75, -75 )
-polygon = PoolVector2Array( 0, 0, 150, 0, 150, 150, 0, 150 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -296,8 +278,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="wheelchair/BackButton" to="wheelchair" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="BackButton" to="wheelchair" method="_on_BackButton_pressed"]
 [connection signal="area_entered" from="collision_area" to="wheelchair" method="_on_collision_area_area_entered"]
 [connection signal="area_exited" from="collision_area" to="wheelchair" method="_on_collision_area_area_exited"]
-[connection signal="area_entered" from="curve_collision_area" to="wheelchair" method="_on_curve_collision_area_area_entered"]
-[connection signal="area_exited" from="curve_collision_area" to="wheelchair" method="_on_curve_collision_area_area_exited"]

@@ -1,15 +1,15 @@
 extends Area2D
-
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 var db
 var db_name = "res://UserDataStore/userdatabase.db"
 var db_name_user = "user://userdatabase.db"
 
-
-
+#Variables to keep track of frames
+var dtime = 0.0
+var mouse_pos = Vector2()
 # Constants to determine max speeds
-var rotation_speed = 0.01
-var forward_speed = 0.8
+var rotation_speed = .01
+var forward_speed = .8
 
 # Part of the original code to generate the paths
 var past_first_block = false  #used for final instructions (i.e. stop)
@@ -102,9 +102,9 @@ var dlj_3 = 0.0
 var dlj_4 = 0.0
 var dlj_curve = 0.0
 
-#var input_type = "keyboard"
+var input_type = "mouse_4"
 #var input_type = "mouse"
-var input_type = "controller"
+#var input_type = "controller"
 
 # For Date and Time
 var date_time 
@@ -120,7 +120,6 @@ func _ready():
 	position.x = 550
 	position.y = 550
 	rotation = PI
-	get_node('../curve_collision_area').hide()
 	
 	var dir = Directory.new();
 	#Testing some functionality with Android 
@@ -144,9 +143,35 @@ func _process(delta):
 		# Store x and y inputs as 0 or 1 values based off arrow keys
 		inpx = (int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")))
 		inpy = (int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up")))
-	elif input_type == "mouse": 
-		inpx = (int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")))
-		inpy = (int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up")))
+	elif input_type == "mouse": #DOESNT WORK BUT WOULD BE BEST SOLUTION
+		dtime = dtime + delta
+		var mouse_pos = get_viewport().get_mouse_position()
+		var center_pos = get_viewport_rect().size / 2
+		var direction = (mouse_pos - center_pos).normalized() 
+		var dir_mag = mouse_pos - center_pos
+		var radius = sqrt((pow(dir_mag[0], 2) + pow(dir_mag[1],2)))
+		var angle_to_mouse = -direction.angle()
+		if (radius > 50):
+			mouse_to_controller(angle_to_mouse)
+		else: 
+			inpx = 0
+			inpy = 0
+		if fmod(int(dtime),.5) == 0: 
+			Input.warp_mouse_position(center_pos) 
+	elif input_type == "mouse_2": #HOPE THIS WORKS
+		Input.set_mouse_mode(2)
+		var direction = mouse_pos.normalized()
+		var angle_to_mouse = -direction.angle()
+		mouse_to_controller(angle_to_mouse)
+	elif input_type == "mouse_3": #LOW DPI SET SOMEHOW
+		var direction = mouse_pos.normalized()
+		var angle_to_mouse = -direction.angle()
+		mouse_to_controller(angle_to_mouse)
+	elif input_type == "mouse_4": #Velocity solution 
+		var mouse_vel = Input.get_last_mouse_speed()
+		var angle_to_mouse = -mouse_vel.angle()
+		mouse_to_controller(angle_to_mouse)
+		
 	else:
 		# If using a controller, get the joystick positions for x and y
 		inpx = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -157,7 +182,6 @@ func _process(delta):
 		started_moving = true
 		interval_start = OS.get_ticks_msec()
 	var angle  = rotation-PI/2
-	
 	# Update the wheelchair's position and rotation based off joystick
 	curr_x_speed = forward_speed*inpy*cos(angle)
 	curr_y_speed = forward_speed*inpy*sin(angle)
@@ -201,7 +225,7 @@ func change_display_directions():
 		past_first_block = true
 	if abs(position.x - right_x) <pos_tol and abs(position.y-top_y) <pos_tol and abs(up_heading - abs(rot)) < rot_tol :   #the abs(rot) only needed for up_heading
 		$direction_arrow.set_rotation(-PI/2)
-		$Camera2D/direction_label.set_text("Left")
+		$CameraNode/direction_label.set_text("Left")
 		if !path1:
 			# Get the time that the user ended this interval
 			interval_end = OS.get_ticks_msec()
@@ -230,7 +254,7 @@ func change_display_directions():
 		# print("Left")
 	if abs(position.x - right_x) <pos_tol and abs(position.y-top_y) <pos_tol and abs(left_heading - rot) < rot_tol :
 		$direction_arrow.set_rotation(0)
-		$Camera2D/direction_label.set_text("Forward")
+		$CameraNode/direction_label.set_text("Forward")
 		if !turn1:
 			interval_start = OS.get_ticks_msec()
 			start_x = position.x
@@ -244,7 +268,7 @@ func change_display_directions():
 	# SECOND TURN BLOCK
 	if abs(position.x - left_x) <pos_tol and abs(position.y-top_y) <pos_tol and abs(left_heading - rot) < rot_tol :
 		$direction_arrow.set_rotation(PI/2)
-		$Camera2D/direction_label.set_text("Right")
+		$CameraNode/direction_label.set_text("Right")
 		if !path2:
 			interval_end = OS.get_ticks_msec()
 			end_x = position.x
@@ -264,7 +288,7 @@ func change_display_directions():
 			path2 = true
 	if abs(position.x - left_x) <pos_tol and abs(position.y-top_y) <pos_tol and abs(up_heading - abs(rot)) < rot_tol :
 		$direction_arrow.set_rotation(-PI)
-		$Camera2D/direction_label.set_text("Backward")
+		$CameraNode/direction_label.set_text("Backward")
 		if !turn2:
 			interval_start = OS.get_ticks_msec()
 			start_x = position.x
@@ -277,7 +301,7 @@ func change_display_directions():
 	## 3rd TURN BLOCK
 	if abs(position.x - left_x) <pos_tol and abs(position.y-bot_y) <pos_tol and abs(up_heading - abs(rot)) < rot_tol :
 		$direction_arrow.set_rotation(-PI/2)
-		$Camera2D/direction_label.set_text("Left")
+		$CameraNode/direction_label.set_text("Left")
 		if !path3:
 			interval_end = OS.get_ticks_msec()
 			end_x = position.x
@@ -297,7 +321,7 @@ func change_display_directions():
 			path3 = true
 	if abs(position.x - left_x) <pos_tol and abs(position.y-bot_y) <pos_tol and abs(left_heading - rot) < rot_tol :
 		$direction_arrow.set_rotation(-PI)
-		$Camera2D/direction_label.set_text("Backward")
+		$CameraNode/direction_label.set_text("Backward")
 		if !turn3:
 			interval_start = OS.get_ticks_msec()
 			start_x = position.x
@@ -310,7 +334,7 @@ func change_display_directions():
 	## FINAL BLOCK
 	if abs(position.x - right_x) <pos_tol and abs(position.y-bot_y) <pos_tol and abs(left_heading - rot) < rot_tol :
 		$direction_arrow.set_rotation(PI/2)
-		$Camera2D/direction_label.set_text("Right")
+		$CameraNode/direction_label.set_text("Right")
 		if !path4:
 			interval_end = OS.get_ticks_msec()
 			end_x = position.x
@@ -498,7 +522,23 @@ func _on_curve_collision_area_area_exited(area):
 		print("exit")
 		nBB += 1
 		time_enter = OS.get_ticks_msec()
-
+		
+func mouse_to_controller(angle_to_mouse): 
+	if angle_to_mouse > PI/4 and angle_to_mouse < 3*PI/4: 
+			inpy = -1
+			inpx = 0
+	elif (angle_to_mouse > 3*PI/4 and angle_to_mouse < PI) or (angle_to_mouse > -PI and angle_to_mouse < -3*PI/4) : 
+			inpy = 0
+			inpx = -1
+	elif angle_to_mouse < -PI/4 and angle_to_mouse > -3*PI/4: 
+			inpy = 1
+			inpx = 0
+	elif (angle_to_mouse > 0 and angle_to_mouse < PI/4) or (angle_to_mouse < 0 and angle_to_mouse > -PI/4):  
+			inpy = 0
+			inpx = 1
+func _input(event: InputEvent): 
+	if event is InputEventMouseMotion and input_type == "mouse_2" or "mouse_3":
+		mouse_pos = event.get_relative()
 
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://menu/Menu.tscn")
