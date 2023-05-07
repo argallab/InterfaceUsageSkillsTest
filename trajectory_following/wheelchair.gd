@@ -7,6 +7,7 @@ var db_name_user = "user://userdatabase.db"
 #Variables to keep track of frames
 var dtime = 0.0
 var mouse_pos = Vector2()
+var vel_mag_past = Vector2()
 # Constants to determine max speeds
 var rotation_speed = .01
 var forward_speed = .8
@@ -102,7 +103,7 @@ var dlj_3 = 0.0
 var dlj_4 = 0.0
 var dlj_curve = 0.0
 
-var input_type = "mouse_4"
+var input_type = "mouse_2"
 #var input_type = "mouse"
 #var input_type = "controller"
 
@@ -159,10 +160,16 @@ func _process(delta):
 		if fmod(int(dtime),.5) == 0: 
 			Input.warp_mouse_position(center_pos) 
 	elif input_type == "mouse_2": #HOPE THIS WORKS
+		dtime = dtime + delta 
 		Input.set_mouse_mode(2)
 		var direction = mouse_pos.normalized()
 		var angle_to_mouse = -direction.angle()
-		mouse_to_controller(angle_to_mouse)
+		if vel_mag_past == mouse_pos: 
+			inpx = 0
+			inpy = 0
+		else: 
+			mouse_to_controller(angle_to_mouse)
+		vel_mag_past = mouse_pos
 	elif input_type == "mouse_3": #LOW DPI SET SOMEHOW
 		var direction = mouse_pos.normalized()
 		var angle_to_mouse = -direction.angle()
@@ -171,7 +178,6 @@ func _process(delta):
 		var mouse_vel = Input.get_last_mouse_speed()
 		var angle_to_mouse = -mouse_vel.angle()
 		mouse_to_controller(angle_to_mouse)
-		
 	else:
 		# If using a controller, get the joystick positions for x and y
 		inpx = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
