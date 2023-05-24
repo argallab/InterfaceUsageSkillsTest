@@ -1,0 +1,114 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://black_background.jpg" type="Texture" id=1]
+[ext_resource path="res://button03.png" type="Texture" id=2]
+[ext_resource path="res://delete_data/DeleteData.gd" type="Script" id=3]
+
+[node name="Delete_Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 312.0
+margin_top = 37.5
+margin_right = -312.0
+margin_bottom = -37.5
+rect_min_size = Vector2( 400, 525 )
+rect_pivot_offset = Vector2( 537.708, 155.214 )
+script = ExtResource( 3 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -262.0
+margin_right = 200.0
+margin_bottom = 263.0
+texture = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+margin_left = 35.0
+margin_top = 60.0
+margin_right = 365.0
+margin_bottom = 480.0
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
+margin_right = 330.0
+margin_bottom = 31.0
+text = "Delete the most recent entry of the following categorires: "
+align = 1
+autowrap = true
+
+[node name="Delete_Command" type="TextureButton" parent="NinePatchRect/VBoxContainer"]
+margin_top = 35.0
+margin_right = 330.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 220, 55 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Command_Label" type="Label" parent="NinePatchRect/VBoxContainer/Delete_Command"]
+margin_left = 55.0
+margin_top = 20.5
+margin_right = 275.0
+margin_bottom = 75.5
+text = "Command Following"
+align = 1
+
+[node name="Delete_Trajectory" type="TextureButton" parent="NinePatchRect/VBoxContainer"]
+margin_top = 94.0
+margin_right = 330.0
+margin_bottom = 149.0
+rect_min_size = Vector2( 220, 55 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Trajectory_Label" type="Label" parent="NinePatchRect/VBoxContainer/Delete_Trajectory"]
+margin_left = 100.0
+margin_top = 20.5
+margin_right = 227.0
+margin_bottom = 34.5
+text = "Trajectory Following"
+
+[node name="Delete_Curved" type="TextureButton" parent="NinePatchRect/VBoxContainer"]
+margin_top = 153.0
+margin_right = 330.0
+margin_bottom = 208.0
+rect_min_size = Vector2( 220, 55 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Curved_Label" type="Label" parent="NinePatchRect/VBoxContainer/Delete_Curved"]
+margin_left = 71.0
+margin_top = 21.5
+margin_right = 246.0
+margin_bottom = 35.5
+text = "Curved Trajectory Following"
+
+[node name="Back" type="TextureButton" parent="NinePatchRect/VBoxContainer"]
+margin_top = 212.0
+margin_right = 330.0
+margin_bottom = 267.0
+rect_min_size = Vector2( 220, 55 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Back Label" type="Label" parent="NinePatchRect/VBoxContainer/Back"]
+margin_left = 72.0
+margin_top = 20.5
+margin_right = 247.0
+margin_bottom = 34.5
+text = "Back"
+align = 1
+
+[node name="AlertDialogue" type="AcceptDialog" parent="NinePatchRect/VBoxContainer"]
+margin_top = 271.0
+margin_right = 330.0
+margin_bottom = 329.0
+dialog_text = "This Table is Empty"
+
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Delete_Command" to="." method="_on_Delete_Command_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Delete_Trajectory" to="." method="_on_Delete_Trajectory_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Delete_Curved" to="." method="_on_Delete_Curved_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Back" to="." method="_on_BackButton_pressed"]
+[connection signal="confirmed" from="NinePatchRect/VBoxContainer/AlertDialogue" to="." method="_on_AlertDialogue_confirmed"]

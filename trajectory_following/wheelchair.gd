@@ -104,8 +104,8 @@ var dlj_3 = 0.0
 var dlj_4 = 0.0
 var dlj_curve = 0.0
 
-var input_type = "mouse_2"
-#var input_type = "mouse"
+#var input_type = "mouse_2"
+var input_type = "keyboard"
 #var input_type = "controller"
 
 # For Date and Time
