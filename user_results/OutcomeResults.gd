@@ -276,3 +276,6 @@ func add_items():
 	dropdown.add_item("Percent OB -  Curved")
 	dropdown.add_item("Time - Curved")
 	
+func _on_BackButton_pressed():
+	get_tree().change_scene("res://menu/Menu.tscn")
+	

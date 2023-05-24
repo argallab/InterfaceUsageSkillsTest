@@ -3,7 +3,9 @@ extends Polygon2D
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 var db
 var db_name = "res://UserDataStore/userdatabase"
-
+#Extra Variables for mouse: 
+var start_str = "stop"
+var mouse_pos = Vector2()
 # Variables to define the arrows and which direction it's pointing in the GUI
 var follow_color = Color(0.1,.9,.05)
 var off_color = Color(1,1,1)
@@ -27,6 +29,7 @@ var epsilon = 10 * PI / 180
 
 #var input_type = "keyboard"
 var input_type = "controller"
+var control_type = "mouse"
 var input_vector = Vector2.ZERO
 var input_theta = 0
 var target_angle = 0
@@ -116,11 +119,40 @@ func _input(event):
 			scale_amount = (abs(input_vector.x) + abs(input_vector.y)) / 2
 			arrow_node.scale = Vector2(scale_amount, scale_amount)
 		arrow_node.show()
+	elif control_type == "mouse": 
+		if start_str == "start":
+			if event is InputEventMouseMotion:
+				var mouse_event = event as InputEventMouseMotion
+				mouse_pos = mouse_event.get_relative()
+			Input.set_mouse_mode(2)
+			var direction = mouse_pos.normalized()
+			var angle_to_mouse = -direction.angle()
+			user_dir = mouse_to_controller(angle_to_mouse)
+			print(user_dir)
+			angle = 0
 			
-	else:
-		# If there is no current input, don't display the blue arrow
-		user_dir = "none"
-		arrow_node.hide()
+			if user_dir == "up":
+				angle = 0
+			elif user_dir == "down":
+				angle = PI
+			elif user_dir == "left":
+				angle = -PI/2
+			elif user_dir == "right":
+				angle = PI/2
+			elif user_dir == "up_right":
+				angle = PI/4
+			elif user_dir == "up_left": 
+				angle = -PI/4
+			elif user_dir == "down_right": 
+				angle = 3*PI/4
+			elif user_dir == "down_left": 
+				angle = -3*PI/4
+			arrow_node.set_rotation(angle)
+			arrow_node.show()
+		else:
+			# If there is no current input, don't display the blue arrow
+			user_dir = "none"
+			arrow_node.hide()
 
 func _process(delta):
 	# Updating game stats when the input is the keyboard
@@ -209,6 +241,8 @@ func _process(delta):
 	if Global.prompted_commands >= Global.commands.size() * Global.repetitions:
 		# write to SQL database here
 		print(Global.num_correct)
+		if Global.num_correct == 0: 
+			Global.num_correct = 1
 		Global.avg_response_time = float(sum_t_r / Global.num_correct) / 1000.0
 		Global.avg_settling_time = float(sum_s_r / Global.num_correct) / 1000.0
 		Global.init_response_acc = float(sum_response_acc / Global.num_correct)
@@ -225,7 +259,7 @@ func _process(delta):
 		db_query += str(Global.init_response_acc) + "', '"
 		db_query += str(Global.avg_settling_acc) + "')"
 		db.query(db_query)
-		
+		Input.set_mouse_mode(0)
 		get_tree().change_scene("res://command_following/CommandFollowingResults.tscn")
 		
 # Function to generate the arrow directions, durations, and magnitudes for the entire run
@@ -296,16 +330,39 @@ func target_arrow():
 	if command_index >= commands_per_rep:
 		command_index -= commands_per_rep
 
+
+func mouse_to_controller(angle_to_mouse):
+	#["left", "right", "up", "down", "left-45", "right-45", "up-45", "down-45"]
+	var Direction = ""
+#	var angle = wrapf(angle_to_mouse, -PI, PI) # Wrap angle to range -PI to PI for easier comparison
+	var angle = angle_to_mouse
+	if angle > PI / 8 && angle <= 3 * PI / 8:
+		Direction = "up_right"
+	elif angle > 3 * PI / 8 && angle <= 5 * PI / 8:
+		Direction = "up"
+	elif angle > 5 * PI / 8 && angle <= 7 * PI / 8:
+		Direction = "up_left"
+	elif angle > 7 * PI / 8 || angle <= -7 * PI / 8:
+		Direction = "left"
+	elif angle > -7 * PI / 8 && angle <= -5 * PI / 8:
+		Direction = "down_left"
+	elif angle > -5 * PI / 8 && angle <= -3 * PI / 8:
+		Direction = "down"
+	elif angle > -3 * PI / 8 && angle <= -PI / 8:
+		Direction = "down_right"
+	else:
+		Direction = "right"
+	return Direction 
 # Button to start the task, hide relevant elements, and display the first command
 func on_start_button():
-	var start_str = "start"
+	start_str = "start"
 	# godot2ros_node.send_msg_to_ros(start_str)
 	get_node("../Button").hide()
 	self.get_node(".").hide()
 	print("started")
 	started = true
 	target_arrow()
-	
+		
 func pause():
 	hide()
 	

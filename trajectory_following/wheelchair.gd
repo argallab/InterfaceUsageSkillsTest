@@ -5,6 +5,7 @@ var db_name = "res://UserDataStore/userdatabase.db"
 var db_name_user = "user://userdatabase.db"
 
 #Variables to keep track of frames
+var isMouseCaptured = true
 var dtime = 0.0
 var mouse_pos = Vector2()
 var vel_mag_past = Vector2()
@@ -428,7 +429,7 @@ func change_display_directions():
 			if not success:
 				print(db.error_message)
 				
-			
+			Input.set_mouse_mode(0)
 			get_tree().change_scene("res://trajectory_following/TrajectoryFollowingResults.tscn")
 
 # Helper function to calculate average speed on straight paths
@@ -542,9 +543,11 @@ func mouse_to_controller(angle_to_mouse):
 	elif (angle_to_mouse > 0 and angle_to_mouse < PI/4) or (angle_to_mouse < 0 and angle_to_mouse > -PI/4):  
 			inpy = 0
 			inpx = 1
-func _input(event: InputEvent): 
-	if event is InputEventMouseMotion and input_type == "mouse_2" or "mouse_3":
-		mouse_pos = event.get_relative()
+
+func _input(event: InputEvent):
+	if event is InputEventMouseMotion:
+		var mouse_event = event as InputEventMouseMotion
+		mouse_pos = mouse_event.get_relative()
 
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://menu/Menu.tscn")
