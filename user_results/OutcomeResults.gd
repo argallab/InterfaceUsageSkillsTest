@@ -64,7 +64,7 @@ func _ready():
 		print("Copied db file to users dir")
 	# Initialize the path to database
 	db = SQLite.new()
-	db.path = db_name_user
+	db.path = db_name
 	db.open_db()
 
 	draw_graph()
@@ -270,11 +270,11 @@ func add_items():
 	dropdown.add_item("Linear Speed - Straight")
 	dropdown.add_item("Angular Speed - Straight")
 	dropdown.add_item("Percent OB - Straight")
-	dropdown.add_item("Time - Straight")
-	dropdown.add_item("Smoothness - Curved")
-	dropdown.add_item("Speed -  Curved")
-	dropdown.add_item("Percent OB -  Curved")
-	dropdown.add_item("Time - Curved")
+#	dropdown.add_item("Time - Straight")
+#	dropdown.add_item("Smoothness - Curved")
+#	dropdown.add_item("Speed -  Curved")
+#	dropdown.add_item("Percent OB -  Curved")
+#	dropdown.add_item("Time - Curved")
 	
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://menu/Menu.tscn")

@@ -93,6 +93,13 @@ color = Color( 0.27451, 0.952941, 0.0588235, 1 )
 offset = Vector2( -30, -75 )
 polygon = PoolVector2Array( 20, 0, 20, 100, 50, 80, 50, 120, 0, 150, -50, 120, -50, 80, -20, 100, -20, 0 )
 
+[node name="BackButton" type="Button" parent="wheelchair"]
+margin_left = -140.0
+margin_right = -90.0
+margin_bottom = 50.0
+rect_rotation = 180.0
+text = "Back"
+
 [node name="CameraNode" type="Camera2D" parent="wheelchair"]
 position = Vector2( 40, 50 )
 rotation = -3.14159
@@ -106,14 +113,6 @@ margin_top = -20.0
 margin_right = 227.0
 margin_bottom = -5.99995
 text = "forward"
-
-[node name="BackButton" type="Button" parent="."]
-margin_left = -100.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = 100.0
-rect_rotation = 180.0
-text = "Back"
 
 [node name="collision_area" type="Area2D" parent="."]
 
@@ -278,6 +277,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="BackButton" to="wheelchair" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="wheelchair/BackButton" to="wheelchair" method="_on_BackButton_pressed"]
 [connection signal="area_entered" from="collision_area" to="wheelchair" method="_on_collision_area_area_entered"]
 [connection signal="area_exited" from="collision_area" to="wheelchair" method="_on_collision_area_area_exited"]

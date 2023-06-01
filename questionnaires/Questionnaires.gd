@@ -38,3 +38,6 @@ func _on_ConfidenceButton_pressed():
 
 func _on_StressButton_pressed():
 	get_tree().change_scene("res://questionnaires/stress/StressWorries.tscn")
+
+func _on_BackButton_pressed():
+	get_tree().change_scene("res://menu/Menu.tscn")

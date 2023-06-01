@@ -107,10 +107,12 @@ text = "x-axis"
 align = 1
 
 [node name="BackButton" type="Button" parent="."]
-margin_left = 744.0
-margin_top = 494.0
-margin_right = 868.0
-margin_bottom = 524.0
+anchor_right = 0.007
+anchor_bottom = 0.006
+margin_left = 1031.0
+margin_top = 620.0
+margin_right = 1155.0
+margin_bottom = 650.0
 text = "Back"
 
 [connection signal="item_selected" from="HBoxContainer/VBoxContainer4/dropdown" to="." method="_on_dropdown_item_selected"]

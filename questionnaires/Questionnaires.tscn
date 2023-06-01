@@ -30,9 +30,6 @@ margin_left = 35.0
 margin_top = 60.0
 margin_right = 365.0
 margin_bottom = 480.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="QuestionnairesTitle" type="Label" parent="NinePatchRect/VBoxContainer"]
 margin_right = 330.0
@@ -160,9 +157,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BackButton" type="TextureButton" parent="NinePatchRect/VBoxContainer"]
+margin_top = 372.0
+margin_right = 330.0
+margin_bottom = 427.0
+rect_min_size = Vector2( 220, 55 )
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="BackLabel" type="Label" parent="NinePatchRect/VBoxContainer/BackButton"]
+anchor_right = 0.9
+anchor_bottom = 0.8
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Back"
+align = 1
+valign = 1
+
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/FatigueButton" to="." method="_on_FatigueButton_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/MotivationButton" to="." method="_on_MotivationButton_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/WorkloadButton" to="." method="_on_WorkloadButton_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/StimulantButton" to="." method="_on_StimulantButton_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/ConfidenceButton" to="." method="_on_ConfidenceButton_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/StressButton" to="." method="_on_StressButton_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

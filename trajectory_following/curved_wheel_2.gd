@@ -12,8 +12,8 @@ var dtime = 0.0
 var vel_mag_past = Vector2()
 var mouse_pos = Vector2()
 # Constants to determine max speeds
-var rotation_speed = 0.01
-var forward_speed = 0.8
+var rotation_speed = 0.02
+var forward_speed = 3
 # Part of the original code to generate the paths
 var past_first_block = false  #used for final instructions (i.e. stop)
 var on_curved_path = true
@@ -119,7 +119,8 @@ func _ready():
 		print("Copied db file to users dir")
 	# Initialize the path to database
 	db = SQLite.new()
-	db.path = db_name_user
+	#	db.path = db_name_user Uncomment for SQLITE to work with android
+	db.path = db_name
 	db.open_db()
 	
 	# Initialize the start time

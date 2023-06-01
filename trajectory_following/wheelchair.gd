@@ -5,13 +5,15 @@ var db_name = "res://UserDataStore/userdatabase.db"
 var db_name_user = "user://userdatabase.db"
 
 #Variables to keep track of frames
+var timer
 var isMouseCaptured = true
 var dtime = 0.0
 var mouse_pos = Vector2()
 var vel_mag_past = Vector2()
+var angle_to_mouse
 # Constants to determine max speeds
-var rotation_speed = .01
-var forward_speed = .8
+var rotation_speed = .02
+var forward_speed = 3
 
 # Part of the original code to generate the paths
 var past_first_block = false  #used for final instructions (i.e. stop)
@@ -104,8 +106,8 @@ var dlj_3 = 0.0
 var dlj_4 = 0.0
 var dlj_curve = 0.0
 
-#var input_type = "mouse_2"
-var input_type = "keyboard"
+var input_type = "mouse_2"
+#var input_type = "keyboard"
 #var input_type = "controller"
 
 # For Date and Time
@@ -130,14 +132,14 @@ func _ready():
 		print("Copied db file to users dir")
 	# Initialize the path to database
 	db = SQLite.new()
-	db.path = db_name_user
+#	db.path = db_name_user Uncomment for SQLITE to work with android
+	db.path = db_name
 	db.open_db()
 	# Initialize the start time
 	time_start = OS.get_ticks_msec()
 	
 	start_x = position.x
 	start_y = position.y
-	
 	# global_translate(Vector2(40, 50))
 
 func _process(delta):
@@ -158,23 +160,29 @@ func _process(delta):
 		else: 
 			inpx = 0
 			inpy = 0
-		if fmod(int(dtime),.5) == 0: 
+		if fmod(int(dtime),2) == 0: 
 			Input.warp_mouse_position(center_pos) 
 	elif input_type == "mouse_2": #HOPE THIS WORKS
 		dtime = dtime + delta 
 		Input.set_mouse_mode(2)
 		var direction = mouse_pos.normalized()
-		var angle_to_mouse = -direction.angle()
+		angle_to_mouse = -direction.angle()
 		if vel_mag_past == mouse_pos: 
-			inpx = 0
-			inpy = 0
+				inpx = 0
+				inpy = 0
 		else: 
 			mouse_to_controller(angle_to_mouse)
 		vel_mag_past = mouse_pos
 	elif input_type == "mouse_3": #LOW DPI SET SOMEHOW
 		var direction = mouse_pos.normalized()
 		var angle_to_mouse = -direction.angle()
-		mouse_to_controller(angle_to_mouse)
+		if vel_mag_past == mouse_pos: 
+				inpx = 0
+				inpy = 0
+		else: 
+			mouse_to_controller(angle_to_mouse)
+		vel_mag_past = mouse_pos
+#		mouse_to_controller(angle_to_mouse)
 	elif input_type == "mouse_4": #Velocity solution 
 		var mouse_vel = Input.get_last_mouse_speed()
 		var angle_to_mouse = -mouse_vel.angle()
@@ -548,7 +556,6 @@ func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		var mouse_event = event as InputEventMouseMotion
 		mouse_pos = mouse_event.get_relative()
-
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://menu/Menu.tscn")
 
