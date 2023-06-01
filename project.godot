@@ -290,7 +290,7 @@ Global="*res://global.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/rmsmartshape/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [importer_defaults]
 

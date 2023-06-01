@@ -1,0 +1,4 @@
+res://default_env.tres
+res://login_scene/LoginScreen.tscn
+res://addons/rmsmartshape/assets/GUI_Theme.tres
+res://login_scene/LoginScreen.gd
