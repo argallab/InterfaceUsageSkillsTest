@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://questionnaires/workload/PerformanceVTemporalCheck.tres" type="ButtonGroup" id=1]
+[ext_resource path="res://black_background.jpg" type="Texture" id=2]
+[ext_resource path="res://questionnaires/workload/PerformancevTemporal.gd" type="Script" id=3]
+
+[node name="PerformancevTemporal" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 312.0
+margin_top = 37.5
+margin_right = 712.0
+margin_bottom = 562.5
+rect_min_size = Vector2( 400, 525 )
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+margin_left = 35.0
+margin_top = 60.0
+margin_right = 365.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 330, 420 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+margin_right = 330.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+text = "Click the factor that represents the more important contributor to workload for the task."
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 34.0
+margin_right = 330.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Performance" type="CheckBox" parent="NinePatchRect/VBoxContainer"]
+margin_top = 68.0
+margin_right = 330.0
+margin_bottom = 92.0
+group = ExtResource( 1 )
+text = "Performance"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+margin_top = 96.0
+margin_right = 330.0
+margin_bottom = 171.0
+rect_min_size = Vector2( 0, 75 )
+text = "How successful do you think you were in accomplishing the goals of the task set by the experimenter (or yourself)? How satisfied were you with your performance in accomplishing these goals?"
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 175.0
+margin_right = 330.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="Temporal" type="CheckBox" parent="NinePatchRect/VBoxContainer"]
+margin_top = 194.0
+margin_right = 330.0
+margin_bottom = 218.0
+group = ExtResource( 1 )
+text = "Temporal Demand"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+margin_top = 222.0
+margin_right = 330.0
+margin_bottom = 282.0
+rect_min_size = Vector2( 0, 60 )
+text = "How much time pressure did you feel due to the rate of pace at which the tasks or task elements occurred? Was the pace slow and leisurely or rapid and frantic?"
+
+[node name="MarginContainer3" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 286.0
+margin_right = 330.0
+margin_bottom = 386.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 390.0
+margin_right = 330.0
+margin_bottom = 410.0
+text = "Next"
+[connection signal="toggled" from="NinePatchRect/VBoxContainer/Performance" to="." method="_on_Performance_toggled"]
+[connection signal="toggled" from="NinePatchRect/VBoxContainer/Temporal" to="." method="_on_Temporal_toggled"]
+[connection signal="button_up" from="NinePatchRect/VBoxContainer/Button" to="." method="_on_Button_button_up"]

@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://questionnaires/workload/PerformanceVMentalCheck.tres" type="ButtonGroup" id=1]
+[ext_resource path="res://questionnaires/workload/PerformancevMental.gd" type="Script" id=2]
+[ext_resource path="res://black_background.jpg" type="Texture" id=3]
+
+[node name="PerformancevMental" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 312.0
+margin_top = 37.5
+margin_right = 712.0
+margin_bottom = 562.5
+rect_min_size = Vector2( 400, 525 )
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+margin_left = 35.0
+margin_top = 60.0
+margin_right = 365.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 330, 420 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+margin_right = 330.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+text = "Click the factor that represents the more important contributor to workload for the task."
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 34.0
+margin_right = 330.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Performance" type="CheckBox" parent="NinePatchRect/VBoxContainer"]
+margin_top = 68.0
+margin_right = 330.0
+margin_bottom = 92.0
+group = ExtResource( 1 )
+text = "Performance"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+margin_top = 96.0
+margin_right = 330.0
+margin_bottom = 171.0
+rect_min_size = Vector2( 0, 75 )
+text = "How successful do you think you were in accomplishing the goals of the task set by the experimenter (or yourself)? How satisfied were you with your performance in accomplishing these goals?"
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 175.0
+margin_right = 330.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="Mental" type="CheckBox" parent="NinePatchRect/VBoxContainer"]
+margin_top = 194.0
+margin_right = 330.0
+margin_bottom = 218.0
+group = ExtResource( 1 )
+text = "Mental Demand"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+margin_top = 222.0
+margin_right = 330.0
+margin_bottom = 297.0
+rect_min_size = Vector2( 0, 75 )
+text = "How much mental and perceptual activity was required (e.g. thinking, deciding, calculating, remembering, looking, searching, etc)? Was the task easy or demanding, simple or complex, exacting or forgiving?"
+
+[node name="MarginContainer3" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 301.0
+margin_right = 330.0
+margin_bottom = 401.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 405.0
+margin_right = 330.0
+margin_bottom = 425.0
+text = "Next"
+[connection signal="toggled" from="NinePatchRect/VBoxContainer/Performance" to="." method="_on_Performance_toggled"]
+[connection signal="toggled" from="NinePatchRect/VBoxContainer/Mental" to="." method="_on_Mental_toggled"]
+[connection signal="button_up" from="NinePatchRect/VBoxContainer/Button" to="." method="_on_Button_button_up"]

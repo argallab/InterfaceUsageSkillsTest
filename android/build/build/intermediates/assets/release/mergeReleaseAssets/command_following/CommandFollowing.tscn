@@ -1,0 +1,131 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://command_following/ArrowCommand.gd" type="Script" id=1]
+
+[node name="Main" type="Node"]
+
+[node name="Arrows" type="Node2D" parent="."]
+position = Vector2( 512, 0 )
+
+[node name="ArrowUp" type="Polygon2D" parent="Arrows"]
+visible = false
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+
+[node name="ArrowUp2" type="Polygon2D" parent="Arrows"]
+visible = false
+position = Vector2( 225, 75 )
+rotation = 0.785398
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+
+[node name="ArrowRight" type="Polygon2D" parent="Arrows"]
+visible = false
+position = Vector2( 300, 300 )
+rotation = 1.5708
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+
+[node name="ArrowRight2" type="Polygon2D" parent="Arrows"]
+visible = false
+position = Vector2( 225, 525 )
+rotation = 2.35619
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+
+[node name="ArrowDown" type="Polygon2D" parent="Arrows"]
+visible = false
+position = Vector2( 0, 600 )
+rotation = 3.14159
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+
+[node name="ArrowDown2" type="Polygon2D" parent="Arrows"]
+visible = false
+position = Vector2( -225, 525 )
+rotation = 3.92699
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+
+[node name="ArrowLeft" type="Polygon2D" parent="Arrows"]
+visible = false
+position = Vector2( -300, 300 )
+rotation = 4.71239
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+
+[node name="ArrowLeft2" type="Polygon2D" parent="Arrows"]
+visible = false
+position = Vector2( -225, 75 )
+rotation = -0.785398
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+
+[node name="ArrowCommand" type="Polygon2D" parent="."]
+position = Vector2( 512, 300 )
+offset = Vector2( 0, -300 )
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+script = ExtResource( 1 )
+
+[node name="ArrowFeedback" type="Polygon2D" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 0.5, 0.5 )
+color = Color( 0.360784, 0.54902, 0.956863, 1 )
+offset = Vector2( 0, -100 )
+polygon = PoolVector2Array( 0, 0, 100, 100, 50, 100, 50, 200, -50, 200, -50, 100, -100, 100 )
+
+[node name="DurationLabel" type="Label" parent="."]
+margin_left = 49.351
+margin_top = 117.676
+margin_right = 104.351
+margin_bottom = 131.676
+text = "Duration"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CommandsLabel" type="Label" parent="."]
+margin_left = 41.5967
+margin_top = 150.869
+margin_right = 113.597
+margin_bottom = 164.869
+text = "Commands"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 100.0
+margin_bottom = 100.0
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 50.0
+margin_top = 300.0
+margin_right = 100.0
+margin_bottom = 350.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="Button" parent="."]
+margin_left = 125.0
+margin_top = 300.0
+margin_right = 175.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 50, 50 )
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MagnitudeLabel" type="Label" parent="."]
+margin_left = 44.3621
+margin_top = 182.168
+margin_right = 111.362
+margin_bottom = 196.168
+text = "Magnitude"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="BackButton" to="ArrowCommand" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="MenuButton" to="ArrowCommand" method="_on_MenuButton_pressed"]

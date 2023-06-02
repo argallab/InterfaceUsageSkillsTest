@@ -1,0 +1,226 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://black_background.jpg" type="Texture" id=1]
+[ext_resource path="res://questionnaires/workload/WorkloadRatingSheet.gd" type="Script" id=2]
+
+[node name="WorkloadRatingSheet" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 312.0
+margin_top = 37.5
+margin_right = 712.0
+margin_bottom = 562.5
+rect_min_size = Vector2( 400, 525 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+margin_left = 35.0
+margin_top = 60.0
+margin_right = 365.0
+margin_bottom = 483.0
+rect_min_size = Vector2( 330, 420 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+margin_right = 330.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+text = "MENTAL DEMAND:
+How mentally demanding was the task?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 34.0
+margin_right = 330.0
+margin_bottom = 50.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="MentalSlider" type="HSlider" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+margin_left = 29.0
+margin_right = 304.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 275, 0 )
+tick_count = 10
+ticks_on_borders = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 54.0
+margin_right = 330.0
+margin_bottom = 68.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer2"]
+margin_right = 20.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2"]
+margin_left = 24.0
+margin_right = 49.0
+margin_bottom = 14.0
+text = "Low"
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer2"]
+margin_left = 53.0
+margin_right = 283.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 230, 0 )
+
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2"]
+margin_left = 287.0
+margin_right = 316.0
+margin_bottom = 14.0
+text = "High"
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 72.0
+margin_right = 330.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+margin_top = 106.0
+margin_right = 330.0
+margin_bottom = 151.0
+rect_min_size = Vector2( 0, 45 )
+text = "FRUSTRATION:
+How insecure, discouraged, irritated, stressed, and annoyed were you?"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 155.0
+margin_right = 330.0
+margin_bottom = 171.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer3"]
+margin_right = 25.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="FrustrationSlider" type="HSlider" parent="NinePatchRect/VBoxContainer/HBoxContainer3"]
+margin_left = 29.0
+margin_right = 304.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 275, 0 )
+tick_count = 10
+ticks_on_borders = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 175.0
+margin_right = 330.0
+margin_bottom = 189.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+margin_right = 20.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+margin_left = 24.0
+margin_right = 49.0
+margin_bottom = 14.0
+text = "Low"
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+margin_left = 53.0
+margin_right = 283.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 230, 0 )
+
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+margin_left = 287.0
+margin_right = 316.0
+margin_bottom = 14.0
+text = "High"
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 193.0
+margin_right = 330.0
+margin_bottom = 223.0
+rect_min_size = Vector2( 0, 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+margin_top = 227.0
+margin_right = 330.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 0, 30 )
+text = "PHYSICAL DEMAND:
+How physically demanding was the task?"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 261.0
+margin_right = 330.0
+margin_bottom = 277.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
+margin_right = 25.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="PhysicalSlider" type="HSlider" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
+margin_left = 29.0
+margin_right = 304.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 275, 0 )
+tick_count = 10
+ticks_on_borders = true
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 281.0
+margin_right = 330.0
+margin_bottom = 295.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
+margin_right = 20.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
+margin_left = 24.0
+margin_right = 49.0
+margin_bottom = 14.0
+text = "Low"
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
+margin_left = 53.0
+margin_right = 283.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 230, 0 )
+
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer6"]
+margin_left = 287.0
+margin_right = 316.0
+margin_bottom = 14.0
+text = "High"
+
+[node name="MarginContainer3" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 299.0
+margin_right = 330.0
+margin_bottom = 399.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 403.0
+margin_right = 330.0
+margin_bottom = 423.0
+text = "Next"
+
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/MentalSlider" to="." method="_on_MentalSlider_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/FrustrationSlider" to="." method="_on_FrustrationSlider_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer5/PhysicalSlider" to="." method="_on_PhysicalSlider_value_changed"]
+[connection signal="button_up" from="NinePatchRect/VBoxContainer/Button" to="." method="_on_Button_button_up"]
